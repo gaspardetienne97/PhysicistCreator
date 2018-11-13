@@ -28,3 +28,6 @@ out
 gen
 
 
+/web/node_modules/
+unity/gaspardUnity/
+web/public/
