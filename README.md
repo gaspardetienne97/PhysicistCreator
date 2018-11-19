@@ -4,7 +4,7 @@ PhysicistCreator
 A repository to house our Spark project
 -------------------------------------
 
-This repository is structure such that the unity holds most of our test scenes and web holds our web-app
+This repository is structured such that the directory unity holds most of our test scenes and the web directory holds our web-app.
 
 To run the web-app:
 
