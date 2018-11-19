@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import Drawer from './drawer'
+import Gallery from './gallery';
+import  Drawer from  './drawer';
 import logo from './logo.svg';
 import './App.css';
 import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
@@ -24,12 +25,13 @@ const theme = createMuiTheme({
     },
 });
 
+
 class App extends Component {
     render() {
         return (
             <MuiThemeProvider theme={theme}>
                 <div className="App">
-                    <Drawer/>
+                    <Gallery/>
                 </div>
             </MuiThemeProvider>
         );

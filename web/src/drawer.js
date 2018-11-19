@@ -1,4 +1,4 @@
-import React from 'react';
+import {React, Component} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {withStyles} from '@material-ui/core/styles';
@@ -63,19 +63,23 @@ const styles = theme => ({
         },
         equation: {
             border: 'black solid 1 vmin',
-            backgroundColor: '#282c34',
-            minHeight: '10vh',
+            backgroundColor: theme.palette.secondary.light,
+            minHeight: '7vh',
+            maxHeight: '10vh',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
             fontSize: 'calc(10px +2vh)',
             color: 'white',
+            marginBottom: '2vh',
         },
         simulation: {
             border: 'black solid vh',
-            minHeight: '80vh',
-            backgroundColor: theme.primary ,
+            minHeight: '75vh',
+            maxHeight: '80vh',
+            backgroundColor: theme.palette.primary.light ,
+            marginTop: '2vh',
 
         }
         ,
@@ -104,7 +108,7 @@ const styles = theme => ({
     })
 ;
 
-class PersistentDrawerLeft extends React.Component {
+class PersistentDrawerLeft extends Component {
     state = {
         open: false,
     };
@@ -185,40 +189,17 @@ class PersistentDrawerLeft extends React.Component {
                     <div className={classes.drawerHeader}/>
                     <div className={classes.equation}>
                         <Typography variant="h1">
-                            Equation go here
+                            Equation goes here
                         </Typography>
-                        <Typography paragraph>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent
-                            elementum facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in
-                            hendrerit gravida rutrum quisque non tellus. Convallis convallis tellus id interdum
-                            velit laoreet id donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing.
-                            Amet nisl suscipit adipiscing bibendum est ultricies integer quis. Cursus euismod quis
-                            viverra nibh cras. Metus vulputate eu scelerisque felis imperdiet proin fermentum leo.
-                            Mauris commodo quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus
-                            at augue. At augue eget arcu dictum varius duis at consectetur lorem. Velit sed
-                            ullamcorper morbi tincidunt. Lorem donec massa sapien faucibus et molestie ac.
-                        </Typography>
+
+
                     </div>
                     <Divider/>
                     <div className={classes.simulation}>
-                        <Paper>
                             <Typography variant="h1">
-                                Simulation go here
+                                Simulation goes here
                             </Typography>
-                            <Typography paragraph>
-                                Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
-                                facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
-                                tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus sit amet volutpat
-                                consequat mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis risus
-                                sed vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra accumsan in.
-                                In hendrerit gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem
-                                et tortor. Habitant morbi tristique senectus et. Adipiscing elit duis tristique
-                                sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo
-                                viverra maecenas accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam
-                                ultrices sagittis orci a.
-                            </Typography>
-                        </Paper>
+
                     </div>
                 </main>
             </div>
