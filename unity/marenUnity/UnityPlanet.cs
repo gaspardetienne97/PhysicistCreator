@@ -7,11 +7,12 @@ public class UnityPlanet : MonoBehaviour
 
     // orbits around a "star" at the origin with fixed mass
     public float Mass = 1000f;
+    public float MG = 980f;
 
     // Use this for initialization
     void Start()
     {
-        float initV = Mathf.Sqrt( Mass / transform.position.magnitude);
+        float initV = Mathf.Sqrt(Mass/ transform.position.magnitude);
         GetComponent<Rigidbody>().velocity = new Vector3(0, initV, 0);
     }
 
@@ -19,7 +20,7 @@ public class UnityPlanet : MonoBehaviour
     void FixedUpdate()
     {
         float rad = Vector3.Magnitude(transform.position);
-        float totalForce = -(Mass) / (rad * rad);
+        float totalForce = -(MG) / (rad * rad);
         Vector3 force = (transform.position).normalized * totalForce;
         GetComponent<Rigidbody>().AddForce(force);
     }
