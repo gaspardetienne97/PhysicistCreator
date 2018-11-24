@@ -12,7 +12,8 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Drawer from './drawer';
+import Drawer from './Main';
+import {Link} from 'react-router-dom'
 
 const styles = {
     root: {
@@ -33,6 +34,7 @@ const styles = {
     },
 };
 
+
 class  Gallery extends React.Component {
     render(){
         const {classes, theme} = this.props;
@@ -40,18 +42,6 @@ class  Gallery extends React.Component {
         return (
 
         <div className={classes.root}>
-            <AppBar position="static">
-                <Toolbar>
-                    <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-                        <MenuIcon/>
-                    </IconButton>
-                    <Typography variant="h6" color="inherit" className={classes.grow}>
-                        News
-                    </Typography>
-                    <Button color="inherit">Login</Button>
-                </Toolbar>
-            </AppBar>
-
             <Card className={classes.card}>
                 <CardActionArea>
                     <CardMedia
@@ -69,9 +59,11 @@ class  Gallery extends React.Component {
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Button size="small" color="primary" onClick={()=><Drawer/>}>
+                    <Link to='/simulation'>
+                    <Button size="small" color="primary" >
                         Learn More
                     </Button>
+                    </Link>
                 </CardActions>
             </Card>
             <Card className={classes.card}>
@@ -91,9 +83,11 @@ class  Gallery extends React.Component {
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Button size="small" color="primary" onClick={()=><Drawer/>}>
+                    <Link to='/simulation'>
+                    <Button size="small" color="primary">
                     Learn More
                     </Button>
+                    </Link>
                 </CardActions>
             </Card>
         </div>

@@ -1,4 +1,4 @@
-import {React, Component} from 'react';
+import React  from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {withStyles} from '@material-ui/core/styles';
@@ -18,7 +18,11 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
-import Paper from '@material-ui/core/Paper';
+import Gallery from './gallery';
+import {Route, Switch} from "react-router-dom";
+import NoMatch from './NoMatch'
+import Home from './Home'
+import Simulation from './Simulation'
 
 const drawerWidth = 240;
 
@@ -78,7 +82,7 @@ const styles = theme => ({
             border: 'black solid vh',
             minHeight: '75vh',
             maxHeight: '80vh',
-            backgroundColor: theme.palette.primary.light ,
+            backgroundColor: theme.palette.primary.light,
             marginTop: '2vh',
 
         }
@@ -108,9 +112,15 @@ const styles = theme => ({
     })
 ;
 
-class PersistentDrawerLeft extends Component {
+
+
+
+
+
+class Main extends React.Component {
     state = {
         open: false,
+        render: '',
     };
 
     handleDrawerOpen = () => {
@@ -120,6 +130,7 @@ class PersistentDrawerLeft extends Component {
     handleDrawerClose = () => {
         this.setState({open: false});
     };
+
 
     render() {
         const {classes, theme} = this.props;
@@ -187,29 +198,24 @@ class PersistentDrawerLeft extends Component {
                     })}
                 >
                     <div className={classes.drawerHeader}/>
-                    <div className={classes.equation}>
-                        <Typography variant="h1">
-                            Equation goes here
-                        </Typography>
+                    <Switch>
+                        <Route exact path='/' component={Home}/>
+                        <Route path='/home' component={Home}/>
+                        <Route path='/gallery' component={Gallery}/>
+                        <Route exact path='/simulation' component={Simulation}/>
+                        <Route component={NoMatch}/>
+                    </Switch>
 
-
-                    </div>
-                    <Divider/>
-                    <div className={classes.simulation}>
-                            <Typography variant="h1">
-                                Simulation goes here
-                            </Typography>
-
-                    </div>
                 </main>
+
             </div>
         );
     }
 }
 
-PersistentDrawerLeft.propTypes = {
+Main.propTypes = {
     classes: PropTypes.object.isRequired,
     theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, {withTheme: true})(PersistentDrawerLeft);
+export default withStyles(styles, {withTheme: true})(Main);
