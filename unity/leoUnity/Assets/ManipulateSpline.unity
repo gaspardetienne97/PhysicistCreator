@@ -179,54 +179,55 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &858852102
+--- !u!1 &1655130710
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 858852104}
-  - component: {fileID: 858852103}
+  - component: {fileID: 1655130712}
+  - component: {fileID: 1655130711}
   m_Layer: 0
-  m_Name: BezierSpline
+  m_Name: LoopedBezierSpline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &858852103
+--- !u!114 &1655130711
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 858852102}
+  m_GameObject: {fileID: 1655130710}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c09395d037b93d4f9f3a736cdd8345e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   points:
-  - {x: -465.72363, y: -81.80415, z: 765.9712}
-  - {x: 315.51196, y: 178.83774, z: 372.35742}
-  - {x: 903.7999, y: -392.63815, z: 2649.1487}
-  - {x: 1441.7056, y: 352.66797, z: 129.7622}
-  - {x: 1113.5989, y: 296.83835, z: 128.9021}
-  - {x: 1456.3481, y: -98.94549, z: -17.08722}
-  - {x: 1218.2413, y: -21.015259, z: -528.34033}
-  - {x: 864.41345, y: 94.78943, z: -1288.065}
-  - {x: -975.77, y: 331.41394, z: 359.28735}
-  - {x: -1104.6155, y: 306.02087, z: -738.2307}
-  - {x: -1233.4609, y: 280.6278, z: -1835.7488}
-  - {x: -184.79224, y: -29.876404, z: -1856.4543}
-  - {x: -183.79224, y: -29.876404, z: -1856.4543}
+  - {x: 292.12854, y: 659.39795, z: 645.25244}
+  - {x: 1073.3641, y: 920.0398, z: 251.63867}
+  - {x: 3654.7705, y: 268.38806, z: 2649.1487}
+  - {x: 3342.1035, y: 141.23645, z: 129.7622}
+  - {x: 3013.9968, y: 2066.8657, z: -2639.8594}
+  - {x: 1486.0406, y: -661.12225, z: -1467.1531}
+  - {x: 1174.0188, y: -579.37, z: -1978.4062}
+  - {x: 737.32214, y: -464.9519, z: -2693.9412}
+  - {x: -900.584, y: 1717.1886, z: 359.28735}
+  - {x: -1104.6155, y: 1734.7985, z: -738.2307}
+  - {x: -1308.647, y: 1752.4083, z: -1835.7488}
+  - {x: -983.3124, y: -337.66687, z: -5160.13}
+  - {x: 292.12854, y: 659.39795, z: 645.25244}
   modes: 0000000000000000010000000200000000000000
---- !u!4 &858852104
+  loop: 1
+--- !u!4 &1655130712
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 858852102}
+  m_GameObject: {fileID: 1655130710}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2143, y: 270, z: -2230}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -310,6 +311,62 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1993357114
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1993357116}
+  - component: {fileID: 1993357115}
+  m_Layer: 0
+  m_Name: LoopedBezierSpline (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1993357115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1993357114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c09395d037b93d4f9f3a736cdd8345e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  points:
+  - {x: -274461.5, y: -274203, z: 907258.2}
+  - {x: -273680.28, y: -273942.06, z: 906864}
+  - {x: 3654.7705, y: 268.38806, z: 2649.1487}
+  - {x: 3342.1035, y: 141.23645, z: 129.7622}
+  - {x: 3013.9968, y: 2066.8657, z: -2639.8594}
+  - {x: 1486.0406, y: -661.12225, z: -1467.1531}
+  - {x: 1174.0188, y: -579.37, z: -1978.4062}
+  - {x: 737.32214, y: -464.9519, z: -2693.9412}
+  - {x: -900.584, y: 1717.1886, z: 359.28735}
+  - {x: -1104.6155, y: 1734.7985, z: -738.2307}
+  - {x: -1308.647, y: 1752.4083, z: -1835.7488}
+  - {x: -5687.596, y: -5335.5234, z: -5160.13}
+  - {x: -4412.1553, y: -4338.4585, z: 645.25244}
+  modes: 0000000000000000010000000200000000000000
+  loop: 0
+--- !u!4 &1993357116
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1993357114}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2143, y: 270, z: -2230}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2083247751
 GameObject:
