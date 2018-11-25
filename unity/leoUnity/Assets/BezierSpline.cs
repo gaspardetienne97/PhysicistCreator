@@ -7,18 +7,179 @@ using System;
 public class BezierSpline : MonoBehaviour
 {
     [SerializeField]
-    public Vector3[] points;
+    private Vector3[] points;
 
+    [SerializeField]
+    private BezierControlPointMode[] modes;
+
+    //Allows us to add loops to our path
+    [SerializeField]
+    private bool loop;
+
+    public bool Loop
+    {
+        get
+        {
+            return loop;
+        }
+        set
+        {
+            loop = value;
+            if (value == true)
+            {
+                modes[modes.Length - 1] = modes[0];
+                SetControlPoint(0, points[0]);
+            }
+        }
+    }
+
+    public BezierControlPointMode GetControlPointMode(int index)
+    {
+        return modes[(index + 1) / 3];
+    }
+
+    public void SetControlPointMode(int index, BezierControlPointMode mode)
+    {
+        int modeIndex = (index + 1) / 3;
+        modes[modeIndex] = mode;
+        if (loop)
+        {
+            if (modeIndex == 0)
+            {
+                modes[modes.Length - 1] = mode;
+            }
+            else if (modeIndex == modes.Length - 1)
+            {
+                modes[0] = mode;
+            }
+        }
+        EnforceMode(index);
+    }
+
+    //Everything up to the next comment concerns itself with fixing the lack of derivative at the connecting points.
+    //Implementing this will be important for the closed loop path
+    public int ControlPointCount
+    {
+        get
+        {
+            return points.Length;
+        }
+    }
+
+    public Vector3 GetControlPoint(int index)
+    {
+        return points[index];
+        EnforceMode(index);
+    }
+
+    public void SetControlPoint(int index, Vector3 point)
+    {
+        if (index % 3 == 0)
+        {
+            Vector3 delta = point - points[index];
+            if (loop)
+            {
+                if (index == 0)
+                {
+                    points[1] += delta;
+                    points[points.Length - 2] += delta;
+                    points[points.Length - 1] = point;
+                }
+                else if (index == points.Length - 1)
+                {
+                    points[0] = point;
+                    points[1] += delta;
+                    points[index - 1] += delta;
+                }
+                else
+                {
+                    points[index - 1] += delta;
+                    points[index + 1] += delta;
+                }
+            }
+            else
+            {
+                if (index > 0)
+                {
+                    points[index - 1] += delta;
+                }
+                if (index + 1 < points.Length)
+                {
+                    points[index + 1] += delta;
+                }
+            }
+        }
+        points[index] = point;
+        EnforceMode(index);
+    }
+
+    private void EnforceMode(int index)
+    {
+
+        int modeIndex = (index + 1) / 3;
+        BezierControlPointMode mode = modes[modeIndex];
+        if (mode == BezierControlPointMode.Free || !loop && (modeIndex == 0 || modeIndex == modes.Length - 1))
+        {
+            return;
+        }
+
+        int middleIndex = modeIndex * 3;
+        int fixedIndex, enforcedIndex;
+
+        if (index <= middleIndex)
+        {
+            fixedIndex = middleIndex - 1;
+            if (fixedIndex < 0)
+            {
+                fixedIndex = points.Length - 2;
+            }
+            enforcedIndex = middleIndex + 1;
+            if (enforcedIndex >= points.Length)
+            {
+                enforcedIndex = 1;
+            }
+        }
+        else
+        {
+            fixedIndex = middleIndex + 1;
+            if (fixedIndex >= points.Length)
+            {
+                fixedIndex = 1;
+            }
+            enforcedIndex = middleIndex - 1;
+            if (enforcedIndex < 0)
+            {
+                enforcedIndex = points.Length - 2;
+            }
+        }
+        Vector3 middle = points[middleIndex];
+        Vector3 enforcedTangent = middle - points[fixedIndex];
+        if (mode == BezierControlPointMode.Aligned)
+        {
+            enforcedTangent = enforcedTangent.normalized * Vector3.Distance(middle, points[enforcedIndex]);
+        }
+        points[enforcedIndex] = middle + enforcedTangent;
+    }
+
+
+    //Action taken when resetting in Inspector
     public void Reset()
     {
         points = new Vector3[] {
-            new Vector3(1f, 0f, 0f),
-            new Vector3(2f, 0f, 0f),
-            new Vector3(3f, 0f, 0f),
-            new Vector3(4f, 0f, 0f)
+            new Vector3(100f, 0f, 0f),
+            new Vector3(2f, 100f, 0f),
+            new Vector3(3f, 0f, 100f),
+            new Vector3(400f, 0f, 0f)
+        };
+
+        modes = new BezierControlPointMode[] {
+            BezierControlPointMode.Free,
+            BezierControlPointMode.Free
         };
     }
 
+
+    //Everything below concerns itself with drawing the curve as a cubic function
     public Vector3 GetPoint(float t)
     {
 
@@ -38,6 +199,7 @@ public class BezierSpline : MonoBehaviour
 
         return transform.TransformPoint(Bezier.GetPointCubic(points[i], points[i+1], points[i+2], points[i+3], t));
     }
+
 
     public Vector3 GetVelocity(float t)
     {
@@ -62,10 +224,11 @@ public class BezierSpline : MonoBehaviour
     //Returns normalized velocity curve, for visual purposes.
     public Vector3 GetDirection(float t)
     {
-        return GetVelocity(t);
 
-        //Uncomment to normalize
-        //return GetVelocity(t).normalized;
+        //Put a coefficient in front to scale as desired
+        return 500*GetVelocity(t).normalized;
+
+        //return GetVelocity(t);
 
     }
 
@@ -78,6 +241,7 @@ public class BezierSpline : MonoBehaviour
         }
     }
 
+
     public void AddCurve()
     {
         Vector3 point = points[points.Length - 1];
@@ -88,5 +252,20 @@ public class BezierSpline : MonoBehaviour
         points[points.Length - 2] = point;
         point.x += 1f;
         points[points.Length - 1] = point;
+
+        Array.Resize(ref modes, modes.Length + 1);
+        modes[modes.Length - 1] = modes[modes.Length - 2];
+
+        EnforceMode(points.Length - 4);
+
+        if (loop)
+        {
+            points[points.Length - 1] = points[0];
+            modes[modes.Length - 1] = modes[0];
+            EnforceMode(0);
+        }
+
     }
+
+
 }
