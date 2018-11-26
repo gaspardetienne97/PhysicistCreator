@@ -1,28 +1,30 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class now : MonoBehaviour
-{
-    public Color c1 = Color.yellow;
-    public Color c2 = Color.red;
-    public int lengthOfLineRenderer = 20;
-    void Start()
+public class NewBehaviourScript : MonoBehaviour {
+
+    public Color startColor;
+    public Color endColor;
+    public float StartWidth;
+    public float EndWidth;
+
+    // Use this for initialization
+    void Start () 
     {
         LineRenderer lineRenderer = gameObject.AddComponent<LineRenderer>();
-        lineRenderer.material = new Material(Shader.Find("Particles/Additive"));
-        lineRenderer.SetColors(c1, c2);
-        lineRenderer.SetWidth(0.2F, 0.2F);
-        lineRenderer.SetVertexCount(lengthOfLineRenderer);
+
     }
-    void Update()
+
+    // Update is called once per frame
+    void Update () 
     {
         LineRenderer lineRenderer = GetComponent<LineRenderer>();
-        int i = 0;
-        while (i < lengthOfLineRenderer)
-        {
-            Vector3 pos = new Vector3(i * 0.5F, Mathf.Sin(i + Time.time), 0);
-            lineRenderer.SetPosition(i, pos);
-            i++;
-        }
+        lineRenderer.material = new Material(Shader.Find("Particles/Additive"));
+        //lineRenderer.startWidth = StartWidth;
+        //lineRenderer.endWidth = EndWidth;
+        gameObject.GetComponent<LineRenderer>().SetWidth(StartWidth , EndWidth);
+        lineRenderer.startColor = Color.white;
+        lineRenderer.endColor = Color.white;
     }
 }
