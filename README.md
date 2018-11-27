@@ -8,6 +8,10 @@ This repository is structured such that the directory unity holds most of our te
 
 To run the web-app:
 
+`$ git clone https://github.com/gaspardetienne97/PhysicistCreator.git`
+
+navigate to the folder where you cloned the repo and do :
+
 `$ cd web`
 
 `$ npm install`

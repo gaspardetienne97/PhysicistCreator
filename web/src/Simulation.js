@@ -48,8 +48,6 @@ class Simulation extends Component {
                     <Typography variant="h1">
                         Equation goes here
                     </Typography>
-
-
                 </div>
                 <Divider/>
                 <div className={classes.simulation}>
