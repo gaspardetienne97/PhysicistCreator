@@ -5,7 +5,10 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
-    nomatch: {
+    root: {
+        backgroundColor: theme.palette.secondary.dark
+    },
+    noMatch: {
         ...theme.mixins.gutters(),
         paddingTop: theme.spacing.unit * 2,
         paddingBottom: theme.spacing.unit * 2,
@@ -17,8 +20,8 @@ function NoMatch(props) {
     const {classes} = props;
 
     return (
-        <div>
-            <Paper className={classes.nomatch} elevation={1}>
+        <div className={classes.root}>
+            <Paper className={classes.noMatch} elevation={1}>
                 <Typography variant="h1" component="h3">
                     Error 404!
                 </Typography>

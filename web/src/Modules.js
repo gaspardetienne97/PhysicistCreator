@@ -14,10 +14,15 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Drawer from './Main';
 import {Link} from 'react-router-dom'
+import Placeholder from './images/Placeholder.png'
 
-const styles = {
+const styles = theme=> ({
     root: {
         flexGrow: 1,
+        display: 'inline-block',
+        backgroundColor: theme.palette.secondary.dark,
+        height: '100%',
+        width: '100%'
     },
     grow: {
         flexGrow: 1,
@@ -32,21 +37,28 @@ const styles = {
     media: {
         height: 140,
     },
-};
+    card1: {
+        padding: '2%'
+    },
+    card2: {
+        padding: '2%'
+    }
+});
 
 
-class  Gallery extends React.Component {
+class  Modules extends React.Component {
     render(){
         const {classes, theme} = this.props;
 
         return (
 
         <div className={classes.root}>
+            <div className={classes.card1}>
             <Card className={classes.card}>
                 <CardActionArea>
                     <CardMedia
                         className={classes.media}
-                        image="/static/images/cards/contemplative-reptile.jpg"
+                        image={Placeholder}
                         title="Contemplative Reptile"
                     />
                     <CardContent>
@@ -66,11 +78,13 @@ class  Gallery extends React.Component {
                     </Link>
                 </CardActions>
             </Card>
+            </div>
+            <div className={classes.card2}>
             <Card className={classes.card}>
                 <CardActionArea>
                     <CardMedia
                         className={classes.media}
-                        image="/static/images/cards/contemplative-reptile.jpg"
+                        image={Placeholder}
                         title="Contemplative Reptile"
                     />
                     <CardContent>
@@ -90,13 +104,14 @@ class  Gallery extends React.Component {
                     </Link>
                 </CardActions>
             </Card>
+            </div>
         </div>
     );
 }
 }
 
-Gallery.propTypes = {
+Modules.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Gallery);
+export default withStyles(styles, {withTheme: true})(Modules);

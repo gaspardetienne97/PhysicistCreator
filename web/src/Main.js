@@ -1,116 +1,96 @@
-import React  from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import {withStyles} from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import InputBase from '@material-ui/core/InputBase';
+import Badge from '@material-ui/core/Badge';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
+import {fade} from '@material-ui/core/styles/colorManipulator';
+import {withStyles} from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-import Gallery from './gallery';
-import {Route, Switch} from "react-router-dom";
+import SearchIcon from '@material-ui/icons/Search';
+import ViewModule from '@material-ui/icons/ViewModule';
+import MoreIcon from '@material-ui/icons/MoreVert';
+import {Route, Switch, Link} from "react-router-dom";
 import NoMatch from './NoMatch'
 import Home from './Home'
 import Simulation from './Simulation'
+import Gallery from './Modules';
 
-const drawerWidth = 240;
 
 const styles = theme => ({
-        root: {
+    root: {
+        width: '100%',
+        height: '100%'
+    },
+    grow: {
+        flexGrow: 1,
+    },
+    menuButton: {
+        marginLeft: -12,
+        marginRight: 20,
+    },
+    title: {
+        display: 'none',
+        [theme.breakpoints.up('sm')]: {
+            display: 'block',
+        },
+    },
+    search: {
+        position: 'relative',
+        borderRadius: theme.shape.borderRadius,
+        backgroundColor: fade(theme.palette.common.white, 0.15),
+        '&:hover': {
+            backgroundColor: fade(theme.palette.common.white, 0.25),
+        },
+        marginRight: theme.spacing.unit * 2,
+        marginLeft: 0,
+        width: '100%',
+        [theme.breakpoints.up('sm')]: {
+            marginLeft: theme.spacing.unit * 3,
+            width: 'auto',
+        },
+    },
+    searchIcon: {
+        width: theme.spacing.unit * 9,
+        height: '100%',
+        position: 'absolute',
+        pointerEvents: 'none',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    inputRoot: {
+        color: 'inherit',
+        width: '100%',
+    },
+    inputInput: {
+        paddingTop: theme.spacing.unit,
+        paddingRight: theme.spacing.unit,
+        paddingBottom: theme.spacing.unit,
+        paddingLeft: theme.spacing.unit * 10,
+        transition: theme.transitions.create('width'),
+        width: '100%',
+        [theme.breakpoints.up('md')]: {
+            width: 200,
+        },
+    },
+    sectionDesktop: {
+        display: 'none',
+        [theme.breakpoints.up('md')]: {
             display: 'flex',
         },
-        appBar: {
-            transition: theme.transitions.create(['margin', 'width'], {
-                easing: theme.transitions.easing.sharp,
-                duration: theme.transitions.duration.leavingScreen,
-            }),
-        },
-        appBarShift: {
-            width: `calc(100% - ${drawerWidth}px)`,
-            marginLeft: drawerWidth,
-            transition: theme.transitions.create(['margin', 'width'], {
-                easing: theme.transitions.easing.easeOut,
-                duration: theme.transitions.duration.enteringScreen,
-            }),
-        },
-        menuButton: {
-            marginLeft: 12,
-            marginRight: 20,
-        },
-        hide: {
+    },
+    sectionMobile: {
+        display: 'flex',
+        [theme.breakpoints.up('md')]: {
             display: 'none',
         },
-        drawer: {
-            width: drawerWidth,
-            flexShrink: 0,
-        },
-        drawerPaper: {
-            width: drawerWidth,
-        },
-        drawerHeader: {
-            display: 'flex',
-            alignItems: 'center',
-            padding: '0 8px',
-            ...theme.mixins.toolbar,
-            justifyContent: 'flex-end',
-        },
-        equation: {
-            border: 'black solid 1 vmin',
-            backgroundColor: theme.palette.secondary.light,
-            minHeight: '7vh',
-            maxHeight: '10vh',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: 'calc(10px +2vh)',
-            color: 'white',
-            marginBottom: '2vh',
-        },
-        simulation: {
-            border: 'black solid vh',
-            minHeight: '75vh',
-            maxHeight: '80vh',
-            backgroundColor: theme.palette.primary.light,
-            marginTop: '2vh',
-
-        }
-        ,
-        content: {
-            flexGrow: 1,
-            padding:
-                theme.spacing.unit * 3,
-            transition:
-                theme.transitions.create('margin', {
-                    easing: theme.transitions.easing.sharp,
-                    duration: theme.transitions.duration.leavingScreen,
-                }),
-            marginLeft:
-                -drawerWidth,
-        }
-        ,
-        contentShift: {
-            transition: theme.transitions.create('margin', {
-                easing: theme.transitions.easing.easeOut,
-                duration: theme.transitions.duration.enteringScreen,
-            }),
-            marginLeft:
-                0,
-        }
-        ,
-    })
-;
+    },
+});
 
 
 
@@ -119,95 +99,116 @@ const styles = theme => ({
 
 class Main extends React.Component {
     state = {
-        open: false,
-        render: '',
+        anchorEl: null,
+        mobileMoreAnchorEl: null,
     };
 
-    handleDrawerOpen = () => {
-        this.setState({open: true});
+    handleProfileMenuOpen = event => {
+        this.setState({anchorEl: event.currentTarget});
     };
 
-    handleDrawerClose = () => {
-        this.setState({open: false});
+    handleMenuClose = () => {
+        this.setState({anchorEl: null});
+        this.handleMobileMenuClose();
     };
 
+    handleMobileMenuOpen = event => {
+        this.setState({mobileMoreAnchorEl: event.currentTarget});
+    };
+
+    handleMobileMenuClose = () => {
+        this.setState({mobileMoreAnchorEl: null});
+    };
 
     render() {
-        const {classes, theme} = this.props;
-        const {open} = this.state;
+        const {anchorEl, mobileMoreAnchorEl} = this.state;
+        const {classes} = this.props;
+        const isMenuOpen = Boolean(anchorEl);
+        const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+        const renderMenu = (
+            <Menu
+                anchorEl={anchorEl}
+                anchorOrigin={{vertical: 'top', horizontal: 'right'}}
+                transformOrigin={{vertical: 'top', horizontal: 'right'}}
+                open={isMenuOpen}
+                onClose={this.handleMenuClose}
+            >
+                <MenuItem onClick={this.handleMenuClose}>Profile</MenuItem>
+                <MenuItem onClick={this.handleMenuClose}>My account</MenuItem>
+            </Menu>
+        );
+
+        const renderMobileMenu = (
+            <Menu
+                anchorEl={mobileMoreAnchorEl}
+                anchorOrigin={{vertical: 'top', horizontal: 'right'}}
+                transformOrigin={{vertical: 'top', horizontal: 'right'}}
+                open={isMobileMenuOpen}
+                onClose={this.handleMobileMenuClose}
+            >
+                <MenuItem>
+                    <IconButton color="inherit">
+                        <Badge badgeContent={4} color="secondary">
+                            <ViewModule/>
+                        </Badge>
+                    </IconButton>
+                    <p>Gallery</p>
+                </MenuItem>
+            </Menu>
+        );
 
         return (
             <div className={classes.root}>
-                <CssBaseline/>
-                <AppBar
-                    position="fixed"
-                    className={classNames(classes.appBar, {
-                        [classes.appBarShift]: open,
-                    })}
-                >
-                    <Toolbar disableGutters={!open}>
-                        <IconButton
-                            color="inherit"
-                            aria-label="Open drawer"
-                            onClick={this.handleDrawerOpen}
-                            className={classNames(classes.menuButton, open && classes.hide)}
-                        >
+                <AppBar position="static">
+                    <Toolbar>
+                        <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
                             <MenuIcon/>
                         </IconButton>
-                        <Typography variant="h6" color="inherit" noWrap>
+                        <Link to='/'>
+                        <Typography className={classes.title} variant="h6" color="inherit" noWrap>
                             Sigma.io
                         </Typography>
+                        </Link>
+                        <div className={classes.search}>
+                            <div className={classes.searchIcon}>
+                                <SearchIcon/>
+                            </div>
+                            <InputBase
+                                placeholder="Search…"
+                                classes={{
+                                    root: classes.inputRoot,
+                                    input: classes.inputInput,
+                                }}
+                            />
+                        </div>
+                        <div className={classes.grow}/>
+                        <div className={classes.sectionDesktop}>
+                            <Link to={'/gallery'}>
+                            <IconButton color="inherit">
+                                <Badge badgeContent={4} color="secondary">
+                                    <ViewModule/>
+                                </Badge>
+                            </IconButton>
+                            </Link>
+                        </div>
+                        <div className={classes.sectionMobile}>
+                            <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
+                                <MoreIcon/>
+                            </IconButton>
+                        </div>
                     </Toolbar>
                 </AppBar>
-                <Drawer
-                    className={classes.drawer}
-                    variant="persistent"
-                    anchor="left"
-                    open={open}
-                    classes={{
-                        paper: classes.drawerPaper,
-                    }}
-                >
-                    <div className={classes.drawerHeader}>
-                        <IconButton onClick={this.handleDrawerClose}>
-                            {theme.direction === 'ltr' ? <ChevronLeftIcon/> : <ChevronRightIcon/>}
-                        </IconButton>
-                    </div>
-                    <Divider/>
-                    <List>
-                        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                            <ListItem button key={text}>
-                                <ListItemIcon>{index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
-                                <ListItemText primary={text}/>
-                            </ListItem>
-                        ))}
-                    </List>
-                    <Divider/>
-                    <List>
-                        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                            <ListItem button key={text}>
-                                <ListItemIcon>{index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
-                                <ListItemText primary={text}/>
-                            </ListItem>
-                        ))}
-                    </List>
-                </Drawer>
-                <main
-                    className={classNames(classes.content, {
-                        [classes.contentShift]: open,
-                    })}
-                >
-                    <div className={classes.drawerHeader}/>
-                    <Switch>
-                        <Route exact path='/' component={Home}/>
-                        <Route path='/home' component={Home}/>
-                        <Route path='/gallery' component={Gallery}/>
-                        <Route exact path='/simulation' component={Simulation}/>
-                        <Route component={NoMatch}/>
-                    </Switch>
+                {renderMenu}
+                {renderMobileMenu}
 
-                </main>
-
+                <Switch>
+                    <Route exact path='/' component={Home}/>
+                    <Route path='/home' component={Home}/>
+                    <Route path='/gallery' component={Gallery}/>
+                    <Route exact path='/simulation' component={Simulation}/>
+                    <Route component={NoMatch}/>
+                </Switch>
             </div>
         );
     }

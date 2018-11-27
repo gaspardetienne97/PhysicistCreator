@@ -4,9 +4,8 @@ import logo from './logo.svg';
 import './App.css';
 import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
 import purple from '@material-ui/core/colors/purple';
-import green from '@material-ui/core/colors/green';
+import amber from '@material-ui/core/colors/amber';
 
-//todo: learn how to use react-router and restructure this app.
 //todo: try to embed a unity scene within the app. try: npm install react-unity-webgl
 
 const theme = createMuiTheme({
@@ -17,9 +16,9 @@ const theme = createMuiTheme({
             dark: purple[700],
         },
         secondary: {
-            light: green[300],
-            main: green[500],
-            dark: green[700],
+            light: amber[300],
+            main: amber[500],
+            dark: amber[700],
         },
     },
     typography: {
