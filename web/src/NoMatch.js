@@ -3,10 +3,14 @@ import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import {Link} from "react-router-dom";
+import Button from "@material-ui/core/Button/Button";
 
 const styles = theme => ({
     root: {
-        backgroundColor: theme.palette.secondary.dark
+        height: '100%',
+        width: '100%',
+        backgroundColor: theme.palette.secondary.main
     },
     noMatch: {
         ...theme.mixins.gutters(),
@@ -21,14 +25,18 @@ function NoMatch(props) {
 
     return (
         <div className={classes.root}>
-            <Paper className={classes.noMatch} elevation={1}>
+            <div className={classes.noMatch}>
                 <Typography variant="h1" component="h3">
                     Error 404!
                 </Typography>
                 <Typography component="h3">
                     This page could not be found.
                 </Typography>
-            </Paper>
+                <Link to='/'>
+                    <Button variant="contained" color="primary" className={classes.button}>Return Home!
+                    </Button>
+                </Link>
+            </div>
         </div>
     );
 }

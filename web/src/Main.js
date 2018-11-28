@@ -38,6 +38,10 @@ const styles = theme => ({
         [theme.breakpoints.up('sm')]: {
             display: 'block',
         },
+        color: theme.palette.primary.contrastText,
+        '&:hover': {
+            backgroundColor: fade(theme.palette.common.white, 0.25),
+        },
     },
     search: {
         position: 'relative',
@@ -64,7 +68,7 @@ const styles = theme => ({
         justifyContent: 'center',
     },
     inputRoot: {
-        color: 'inherit',
+        color: theme.palette.secondary.light,
         width: '100%',
     },
     inputInput: {
@@ -83,18 +87,17 @@ const styles = theme => ({
         [theme.breakpoints.up('md')]: {
             display: 'flex',
         },
+        color: theme.palette.secondary.light,
+
     },
     sectionMobile: {
         display: 'flex',
         [theme.breakpoints.up('md')]: {
             display: 'none',
         },
+        color: theme.palette.secondary.light,
     },
 });
-
-
-
-
 
 
 class Main extends React.Component {
@@ -148,12 +151,12 @@ class Main extends React.Component {
                 onClose={this.handleMobileMenuClose}
             >
                 <MenuItem>
-                    <IconButton color="inherit">
-                        <Badge badgeContent={4} color="secondary">
+                    <Link to={'/gallery'}>
+                        <IconButton color="inherit">
                             <ViewModule/>
-                        </Badge>
-                    </IconButton>
-                    <p>Gallery</p>
+                        </IconButton>
+                        <p>Gallery</p>
+                    </Link>
                 </MenuItem>
             </Menu>
         );
@@ -166,9 +169,9 @@ class Main extends React.Component {
                             <MenuIcon/>
                         </IconButton>
                         <Link to='/'>
-                        <Typography className={classes.title} variant="h6" color="inherit" noWrap>
-                            Sigma.io
-                        </Typography>
+                            <Typography className={classes.title} variant="h6" color="inherit" noWrap>
+                                Sigma.io
+                            </Typography>
                         </Link>
                         <div className={classes.search}>
                             <div className={classes.searchIcon}>
@@ -185,11 +188,9 @@ class Main extends React.Component {
                         <div className={classes.grow}/>
                         <div className={classes.sectionDesktop}>
                             <Link to={'/gallery'}>
-                            <IconButton color="inherit">
-                                <Badge badgeContent={4} color="secondary">
+                                <IconButton color="inherit">
                                     <ViewModule/>
-                                </Badge>
-                            </IconButton>
+                                </IconButton>
                             </Link>
                         </div>
                         <div className={classes.sectionMobile}>

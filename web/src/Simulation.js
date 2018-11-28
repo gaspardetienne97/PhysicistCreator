@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
-import Unity, {UnityContent} from "react-unity-webgl";
+import Drawer from './Drawers'
 
 
 const styles = theme => ({
@@ -19,6 +19,7 @@ const styles = theme => ({
         fontSize: 'calc(10px +2vh)',
         color: 'white',
         marginBottom: '2vh',
+        marginTop: '2vh'
     },
     simulation: {
         border: 'black solid vh',
@@ -33,11 +34,6 @@ const styles = theme => ({
 class Simulation extends Component {
     constructor(props) {
         super(props);
-
-        this.unityContent = new UnityContent(
-            "MyGame/Build.json",
-            "MyGame/UnityLoader.js"
-        );
     }
 
     render() {
@@ -54,7 +50,7 @@ class Simulation extends Component {
                     <Typography variant="h1">
                         Simulation goes here
                     </Typography>
-                    <Unity unityContent={this.unityContent}/>
+                    <Drawer/>
                 </div>
             </div>
         );

@@ -11,6 +11,25 @@ import amber from '@material-ui/core/colors/amber';
 const theme = createMuiTheme({
     palette: {
         primary: {
+            light: '#9a67ea',
+            main: '#673ab7',
+            dark: '#320b86',
+            contrastText: '#ffffff'
+        },
+        secondary: {
+            light: '#ffeeff',
+            main: '#f8bbd0',
+            dark: '#c48b9f',
+            contrastText: '#000000'
+        },
+    },
+    typography: {
+        useNextVariants: true,
+    },
+});
+const themedark = createMuiTheme({
+    palette: {
+        primary: {
             light: purple[300],
             main: purple[500],
             dark: purple[700],

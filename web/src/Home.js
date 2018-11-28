@@ -7,13 +7,12 @@ import Typography from '@material-ui/core/Typography'
 
 
 const styles = theme => ({
-    home: {},
     homeGrid: {
         display: 'grid',
         gridTemplateColumns: '25% 25% 25% 25%',
         gridTemplateRows: '30% 30% 30%',
         gridGap: `${theme.spacing.unit * 3}px`,
-        backgroundColor: theme.palette.secondary.dark,
+        backgroundColor: theme.palette.secondary.main,
         height: '100%',
         width: '100%'
     },
@@ -26,6 +25,11 @@ const styles = theme => ({
         gridArea: '2 / 3 / span 1 / span 1',
         margin: theme.spacing.unit,
 
+    },
+    button: {
+        position: 'relative',
+        top: '40%',
+        left: '50%'
     }
 });
 
@@ -35,23 +39,23 @@ class Home extends Component {
     render() {
         const {classes} = this.props;
         return (
-                <div className={classes.homeGrid}>
-                        <div className={classes.logo}>
-                            logo goes here!
-                    </div>
-                    <div className={classes.description}>
-                        <Typography variant="body1">
-                            Don't understand what that equation is supposed to represent?
-                            <br/>
-                            Don't worry we got your back!
-                        </Typography>
-                        <Link to='/gallery'>
-                            <Button variant="contained" color="primary" className={classes.button}>
-                                Get Started!
-                            </Button>
-                        </Link>
-                    </div>
+            <div className={classes.homeGrid}>
+                <div className={classes.logo}>
+                    logo goes here!
                 </div>
+                <div className={classes.description}>
+                    <Typography variant="body1">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda distinctio
+                        doloremque ducimus esse hic, illo incidunt neque perspiciatis quod repellat, repudiandae
+                        rerum sit vitae. Aut incidunt inventore iste molestiae voluptatum?
+                    </Typography>
+                    <Link to='/gallery'>
+                        <Button variant="contained" color="primary" className={classes.button}>
+                            Get Started!
+                        </Button>
+                    </Link>
+                </div>
+            </div>
         );
     }
 }

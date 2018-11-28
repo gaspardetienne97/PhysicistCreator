@@ -14,8 +14,8 @@ import Placeholder from './images/Placeholder.png';
 const styles = theme=> ({
     root: {
         flexGrow: 1,
-        display: 'inline-block',
-        backgroundColor: theme.palette.secondary.dark,
+        display: 'flex',
+        backgroundColor: theme.palette.secondary.main,
         height: '100%',
         width: '100%'
     },
