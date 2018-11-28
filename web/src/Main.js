@@ -5,7 +5,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
-import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import {fade} from '@material-ui/core/styles/colorManipulator';
@@ -170,7 +169,7 @@ class Main extends React.Component {
                         </IconButton>
                         <Link to='/'>
                             <Typography className={classes.title} variant="h6" color="inherit" noWrap>
-                                Sigma.io
+                                SigmaTau
                             </Typography>
                         </Link>
                         <div className={classes.search}>
