@@ -12,19 +12,19 @@ self.__precacheManifest = [
     "url": "/PhysicistCreator/static/js/runtime~main.9312d5e7.js"
   },
   {
-    "revision": "c836eca44cf81b1c8a11",
-    "url": "/PhysicistCreator/static/js/main.c836eca4.chunk.js"
+    "revision": "5313e07cad828a0d143b",
+    "url": "/PhysicistCreator/static/js/main.5313e07c.chunk.js"
   },
   {
     "revision": "94451998edfedef906a4",
     "url": "/PhysicistCreator/static/js/1.94451998.chunk.js"
   },
   {
-    "revision": "c836eca44cf81b1c8a11",
+    "revision": "5313e07cad828a0d143b",
     "url": "/PhysicistCreator/static/css/main.c3b4530c.chunk.css"
   },
   {
-    "revision": "c31f9e444f272818992111e9420fdb48",
+    "revision": "13e6d7203093924a7fb1973b66ade32e",
     "url": "/PhysicistCreator/index.html"
   }
 ];
