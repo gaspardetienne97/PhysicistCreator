@@ -43,7 +43,7 @@ const styles = theme=> ({
 
 class  Modules extends React.Component {
     render(){
-        const {classes, theme} = this.props;
+        const {classes} = this.props;
 
         return (
 

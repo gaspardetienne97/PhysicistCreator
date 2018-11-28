@@ -32,12 +32,9 @@ const styles = theme => ({
 });
 
 class Simulation extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
-        const {classes, theme} = this.props;
+        const {classes} = this.props;
         return (
             <div>
                 <div className={classes.equation}>

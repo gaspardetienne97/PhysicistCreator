@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import Main from './Main';
-import logo from './logo.svg';
+//todo: make svg logo and call it from here
+// import logo from './logo.svg';
 import './App.css';
 import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
-import purple from '@material-ui/core/colors/purple';
-import amber from '@material-ui/core/colors/amber';
+
 
 //todo: try to embed a unity scene within the app. try: npm install react-unity-webgl
 
@@ -27,6 +27,9 @@ const theme = createMuiTheme({
         useNextVariants: true,
     },
 });
+/*
+todo: implement dark theme for the site.
+
 const themedark = createMuiTheme({
     palette: {
         primary: {
@@ -44,6 +47,7 @@ const themedark = createMuiTheme({
         useNextVariants: true,
     },
 });
+*/
 
 
 class App extends Component {
