@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
-import Drawer from './Drawers'
+import {Link} from "react-router-dom";
+import IconButton from "@material-ui/core/IconButton/IconButton";
+import ViewModule from "@material-ui/core/SvgIcon/SvgIcon";
 
 
 const styles = theme => ({
@@ -38,6 +40,16 @@ class Simulation extends Component {
         return (
             <div>
                 <div className={classes.equation}>
+                    <div>
+                        <Link to={'/gallery'}>
+                            <IconButton color="inherit">
+                                <ViewModule/>
+                            </IconButton>
+                        </Link>
+                        <Typography variant="h4">
+                            Module Name
+                        </Typography>
+                    </div>
                     <Typography variant="h1">
                         Equation goes here
                     </Typography>
@@ -47,7 +59,7 @@ class Simulation extends Component {
                     <Typography variant="h1">
                         Simulation goes here
                     </Typography>
-                    <Drawer/>
+
                 </div>
             </div>
         );

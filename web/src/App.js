@@ -3,7 +3,7 @@ import Main from './Main';
 //todo: make svg logo and call it from here
 // import logo from './logo.svg';
 import './App.css';
-import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
+import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles';
 
 
 //todo: try to embed a unity scene within the app. try: npm install react-unity-webgl
@@ -29,6 +29,7 @@ const theme = createMuiTheme({
 });
 /*
 todo: implement dark theme for the site.
+todo: use [CTRL + D] as cheat code to activate dark theme easter egg.
 
 const themedark = createMuiTheme({
     palette: {

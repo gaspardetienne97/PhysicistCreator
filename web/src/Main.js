@@ -5,19 +5,15 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
 import {fade} from '@material-ui/core/styles/colorManipulator';
 import {withStyles} from '@material-ui/core/styles';
-import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-import ViewModule from '@material-ui/icons/ViewModule';
-import MoreIcon from '@material-ui/icons/MoreVert';
-import {Route, Switch, Link} from "react-router-dom";
+import {Link, Route, Switch} from "react-router-dom";
 import NoMatch from './NoMatch'
 import Home from './Home'
 import Simulation from './Simulation'
 import Gallery from './Modules';
+import logo from './logo.svg';
 
 
 const styles = theme => ({
@@ -50,8 +46,6 @@ const styles = theme => ({
             backgroundColor: fade(theme.palette.common.white, 0.25),
         },
         marginRight: theme.spacing.unit * 2,
-        marginLeft: 0,
-        width: '100%',
         [theme.breakpoints.up('sm')]: {
             marginLeft: theme.spacing.unit * 3,
             width: 'auto',
@@ -80,22 +74,9 @@ const styles = theme => ({
         [theme.breakpoints.up('md')]: {
             width: 200,
         },
-    },
-    sectionDesktop: {
-        display: 'none',
-        [theme.breakpoints.up('md')]: {
-            display: 'flex',
-        },
-        color: theme.palette.secondary.light,
+    }
 
-    },
-    sectionMobile: {
-        display: 'flex',
-        [theme.breakpoints.up('md')]: {
-            display: 'none',
-        },
-        color: theme.palette.secondary.light,
-    },
+
 });
 
 
@@ -105,69 +86,17 @@ class Main extends React.Component {
         mobileMoreAnchorEl: null,
     };
 
-    handleProfileMenuOpen = event => {
-        this.setState({anchorEl: event.currentTarget});
-    };
-
-    handleMenuClose = () => {
-        this.setState({anchorEl: null});
-        this.handleMobileMenuClose();
-    };
-
-    handleMobileMenuOpen = event => {
-        this.setState({mobileMoreAnchorEl: event.currentTarget});
-    };
-
-    handleMobileMenuClose = () => {
-        this.setState({mobileMoreAnchorEl: null});
-    };
-
     render() {
-        const {anchorEl, mobileMoreAnchorEl} = this.state;
         const {classes} = this.props;
-        const isMenuOpen = Boolean(anchorEl);
-        const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-        const renderMenu = (
-            <Menu
-                anchorEl={anchorEl}
-                anchorOrigin={{vertical: 'top', horizontal: 'right'}}
-                transformOrigin={{vertical: 'top', horizontal: 'right'}}
-                open={isMenuOpen}
-                onClose={this.handleMenuClose}
-            >
-                <MenuItem onClick={this.handleMenuClose}>Profile</MenuItem>
-                <MenuItem onClick={this.handleMenuClose}>My account</MenuItem>
-            </Menu>
-        );
-
-        const renderMobileMenu = (
-            <Menu
-                anchorEl={mobileMoreAnchorEl}
-                anchorOrigin={{vertical: 'top', horizontal: 'right'}}
-                transformOrigin={{vertical: 'top', horizontal: 'right'}}
-                open={isMobileMenuOpen}
-                onClose={this.handleMobileMenuClose}
-            >
-                <MenuItem>
-                    <Link to={'/gallery'}>
-                        <IconButton color="inherit">
-                            <ViewModule/>
-                        </IconButton>
-                        <p>Gallery</p>
-                    </Link>
-                </MenuItem>
-            </Menu>
-        );
-
         return (
             <div className={classes.root}>
-                <AppBar position="static">
+                <AppBar position="sticky">
                     <Toolbar>
-                        <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
-                            <MenuIcon/>
-                        </IconButton>
                         <Link to='/'>
+                            <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
+                                <img src={logo} alt={'logo'}/>
+                            </IconButton>
+
                             <Typography className={classes.title} variant="h6" color="inherit" noWrap>
                                 SigmaTau
                             </Typography>
@@ -185,23 +114,8 @@ class Main extends React.Component {
                             />
                         </div>
                         <div className={classes.grow}/>
-                        <div className={classes.sectionDesktop}>
-                            <Link to={'/gallery'}>
-                                <IconButton color="inherit">
-                                    <ViewModule/>
-                                </IconButton>
-                            </Link>
-                        </div>
-                        <div className={classes.sectionMobile}>
-                            <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
-                                <MoreIcon/>
-                            </IconButton>
-                        </div>
                     </Toolbar>
                 </AppBar>
-                {renderMenu}
-                {renderMobileMenu}
-
                 <Switch>
                     <Route exact path='/' component={Home}/>
                     <Route path='/home' component={Home}/>

@@ -9,8 +9,8 @@ import Typography from '@material-ui/core/Typography'
 const styles = theme => ({
     homeGrid: {
         display: 'grid',
-        gridTemplateColumns: '25% 25% 25% 25%',
-        gridTemplateRows: '30% 30% 30%',
+        gridTemplateColumns: 'auto auto auto',
+        gridTemplateRows: 'auto auto auto',
         gridGap: `${theme.spacing.unit * 3}px`,
         backgroundColor: theme.palette.secondary.main,
         height: '100%',
@@ -18,19 +18,14 @@ const styles = theme => ({
     },
     logo: {
         border: '' + theme.palette.primary.dark + ' solid 1%',
-        gridArea: '2 / 2 / span 1 / span 1',
+        gridArea: '1 / 2 / span 1 / span 1',
         backgroundColor: theme.palette.primary.light,
+        borderRadius: '100%'
     },
     description: {
-        gridArea: '2 / 3 / span 1 / span 1',
+        gridArea: '2 / 2 / span 1 / span 1',
         margin: theme.spacing.unit,
-
     },
-    button: {
-        position: 'relative',
-        top: '40%',
-        left: '50%'
-    }
 });
 
 
