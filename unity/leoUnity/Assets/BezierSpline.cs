@@ -24,26 +24,34 @@ public class BezierSpline : MonoBehaviour
     private int curveCount;
     private int layerOrder = 0;
     private int SEGMENT_COUNT = 50;
-    public LineRenderer lineRenderer;
+    private int DERIVATIVE_SEGMENT_COUNT = 20;
+
+    public LineRenderer curveRenderer;
+    public List<LineRenderer> derivativeLines;
 
 
-    //All of thid code handles rendering the curve in game, as opposed to just in scene
+    //All of this code handles rendering the curve in game, as opposed to just in scene
     void Start()
     {
-        if (!lineRenderer)
+        if (!curveRenderer)
         {
-            lineRenderer = GetComponent<LineRenderer>();
+            curveRenderer = GetComponent<LineRenderer>();
+            derivativeLines = new List<LineRenderer>();
+
         }
-        lineRenderer.sortingLayerID = layerOrder;
+        curveRenderer.sortingLayerID = layerOrder;
         curveCount = (int)points.Length / 3;
+        DrawCurve2();
+
     }
     void Update()
     {
 
-        DrawCurve();
+        //DrawCurve();
     }
     void DrawCurve()
     {
+
         for (int j = 0; j < curveCount; j++)
         {
             for (int i = 1; i <= SEGMENT_COUNT; i++)
@@ -51,17 +59,55 @@ public class BezierSpline : MonoBehaviour
                 float t = i / (float)SEGMENT_COUNT;
                 int nodeIndex = j * 3;
                 Vector3 pixel = Bezier.GetPointCubic(points[nodeIndex], points[nodeIndex + 1], points[nodeIndex + 2], points[nodeIndex + 3], t);
-                lineRenderer.SetVertexCount(((j * SEGMENT_COUNT) + i));
-                lineRenderer.SetPosition((j * SEGMENT_COUNT) + (i - 1), pixel);
+                curveRenderer.SetVertexCount(((j * SEGMENT_COUNT) + i));
+                curveRenderer.SetPosition((j * SEGMENT_COUNT) + (i - 1), pixel);
             }
 
         }
         
         if (loop) {
-            lineRenderer.loop = true;
+            curveRenderer.loop = true;
         }
         
     }
+    
+    //Modified Version which should allow for ingame handling
+    void DrawCurve2()
+    {
+        curveRenderer.SetVertexCount(SEGMENT_COUNT);
+        for (int i = 0;  i < SEGMENT_COUNT; i++) {
+            Vector3 point = GetPoint(i / (float)SEGMENT_COUNT);
+            curveRenderer.SetPosition(i, point);
+        }
+        if (loop)
+        {
+            curveRenderer.loop = true;
+        }
+    }
+    
+    /*
+    void DrawDerivative()
+    {
+        for (int j = 0; j < curveCount; j++)
+        {
+            for (int i = 1; i <= SEGMENT_COUNT; i++)
+            {
+                LineRenderer lRend = new GameObject().AddComponent<LineRenderer>() as LineRenderer;
+                float t = i / (float)SEGMENT_COUNT;
+                int nodeIndex = j * 3;
+                Vector3 pixel = Bezier.GetFirstDerivativeCubic(points[i], points[i + 1], points[i + 2], points[i + 3], t) -transform.position;
+                lRend.SetVertexCount(((j * SEGMENT_COUNT) + i));
+                LRend.SetPosition((j * SEGMENT_COUNT) + (i - 1), pixel);
+                derivativeLines.Add(lRend);
+            }
+
+        }
+    }
+    */
+
+    
+    
+    
     //End of the rendering code
 
 
