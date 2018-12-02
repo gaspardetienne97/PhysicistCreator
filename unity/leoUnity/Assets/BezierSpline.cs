@@ -19,6 +19,15 @@ public class BezierSpline : MonoBehaviour
     [SerializeField]
     private bool loop;
 
+    public string Types = "Path Types";
+
+    [SerializeField]
+    private bool Scalar;
+
+    [SerializeField]
+    private bool Vector;
+
+
 
 
     private int curveCount;
@@ -29,7 +38,7 @@ public class BezierSpline : MonoBehaviour
     private int DERIVATIVE_SEGMENT_COUNT = 20;
     private int DerivativeLength = 20;
 
-    private int CURTAIN_SEGMENT_COUNT = 20;
+    private int CURTAIN_SEGMENT_COUNT = 50;
     private int CurtainLength = 20;
 
 
@@ -50,9 +59,12 @@ public class BezierSpline : MonoBehaviour
         }
         curveRenderer.sortingLayerID = layerOrder;
         curveCount = (int)points.Length / 3;
+
+
         DrawCurve2();
-        DrawDerivative();
-        DrawCurtain();
+
+        if (Scalar) {DrawCurtain();}
+        if (Vector) { DrawDerivative(); }
 
     }
     void Update()
