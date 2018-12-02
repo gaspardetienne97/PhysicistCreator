@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
+[RequireComponent(typeof(LineRenderer))]
+
+
 
 public class BezierSpline : MonoBehaviour
 {
@@ -15,6 +18,52 @@ public class BezierSpline : MonoBehaviour
     //Allows us to add loops to our path
     [SerializeField]
     private bool loop;
+
+
+
+    private int curveCount;
+    private int layerOrder = 0;
+    private int SEGMENT_COUNT = 50;
+    public LineRenderer lineRenderer;
+
+
+    //All of thid code handles rendering the curve in game, as opposed to just in scene
+    void Start()
+    {
+        if (!lineRenderer)
+        {
+            lineRenderer = GetComponent<LineRenderer>();
+        }
+        lineRenderer.sortingLayerID = layerOrder;
+        curveCount = (int)points.Length / 3;
+    }
+    void Update()
+    {
+
+        DrawCurve();
+    }
+    void DrawCurve()
+    {
+        for (int j = 0; j < curveCount; j++)
+        {
+            for (int i = 1; i <= SEGMENT_COUNT; i++)
+            {
+                float t = i / (float)SEGMENT_COUNT;
+                int nodeIndex = j * 3;
+                Vector3 pixel = Bezier.GetPointCubic(points[nodeIndex], points[nodeIndex + 1], points[nodeIndex + 2], points[nodeIndex + 3], t);
+                lineRenderer.SetVertexCount(((j * SEGMENT_COUNT) + i));
+                lineRenderer.SetPosition((j * SEGMENT_COUNT) + (i - 1), pixel);
+            }
+
+        }
+        
+        if (loop) {
+            lineRenderer.loop = true;
+        }
+        
+    }
+    //End of the rendering code
+
 
     public bool Loop
     {
@@ -226,7 +275,7 @@ public class BezierSpline : MonoBehaviour
     {
 
         //Put a coefficient in front to scale as desired
-        return 500*GetVelocity(t).normalized;
+        return GetVelocity(t).normalized;
 
         //return GetVelocity(t);
 
@@ -266,6 +315,8 @@ public class BezierSpline : MonoBehaviour
         }
 
     }
+
+
 
 
 }
