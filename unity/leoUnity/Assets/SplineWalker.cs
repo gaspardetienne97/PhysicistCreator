@@ -13,6 +13,9 @@ public class SplineWalker : MonoBehaviour
 
     public SplineWalkerMode mode;
 
+    //Needed because the arrow asset we use is oritented wrong naturally.
+    private int arrowCorrection = 90;
+
     private bool goingForward = true;
     private void Update()
     {
@@ -51,6 +54,7 @@ public class SplineWalker : MonoBehaviour
         if (lookForward)
         {
             transform.LookAt(position + spline.GetDirection(progress));
+            transform.Rotate(0, arrowCorrection, arrowCorrection);
         }
     }
 }

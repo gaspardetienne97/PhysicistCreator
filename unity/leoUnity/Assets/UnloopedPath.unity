@@ -146,7 +146,7 @@ MonoBehaviour:
   spline: {fileID: 650282161}
   duration: 10
   lookForward: 1
-  mode: 2
+  mode: 1
 --- !u!65 &562460149
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -347,7 +347,8 @@ MonoBehaviour:
   - {x: -41.908524, y: 107.160706, z: -3.6298752}
   modes: 00000000020000000100000000000000
   loop: 0
-  lineRenderer: {fileID: 650282160}
+  curveRenderer: {fileID: 0}
+  derivativeLines: []
 --- !u!4 &650282162
 Transform:
   m_ObjectHideFlags: 0

@@ -146,7 +146,7 @@ MonoBehaviour:
   spline: {fileID: 1472215117}
   duration: 10
   lookForward: 1
-  mode: 2
+  mode: 1
 --- !u!65 &373254068
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -200,20 +200,20 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 373254066}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: 4ad238e93465117418a5cfec3638b310, type: 3}
 --- !u!4 &373254071
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 373254066}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 25, y: 25, z: 25}
+  m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
 --- !u!1 &657913803
 GameObject:
   m_ObjectHideFlags: 0
@@ -414,9 +414,9 @@ MonoBehaviour:
   points:
   - {x: 0, y: 7.620056, z: -5.4215393}
   - {x: 45.2054, y: -99.323456, z: 17.770164}
-  - {x: 71.90968, y: 130.34496, z: 159.2904}
+  - {x: -45.791977, y: 130.34496, z: 159.2904}
   - {x: 72.90968, y: 69.26629, z: -22.819511}
-  - {x: 73.90968, y: 8.187622, z: -204.92944}
+  - {x: 191.61134, y: 8.187622, z: -204.92944}
   - {x: 139.35634, y: 243.10733, z: -3.6298752}
   - {x: 140.35634, y: 163.19797, z: -3.6298752}
   - {x: 141.02824, y: 109.506454, z: -3.6298752}
@@ -424,7 +424,9 @@ MonoBehaviour:
   - {x: 0, y: 7.620056, z: -5.4215393}
   modes: 02000000020000000100000002000000
   loop: 1
-  lineRenderer: {fileID: 1472215116}
+  curveRenderer: {fileID: 0}
+  derivativeLines: []
+  curtainLines: []
 --- !u!4 &1472215118
 Transform:
   m_ObjectHideFlags: 0

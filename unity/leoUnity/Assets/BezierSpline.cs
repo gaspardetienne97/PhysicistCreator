@@ -23,11 +23,19 @@ public class BezierSpline : MonoBehaviour
 
     private int curveCount;
     private int layerOrder = 0;
+
     private int SEGMENT_COUNT = 50;
+
     private int DERIVATIVE_SEGMENT_COUNT = 20;
+    private int DerivativeLength = 20;
+
+    private int CURTAIN_SEGMENT_COUNT = 20;
+    private int CurtainLength = 20;
+
 
     public LineRenderer curveRenderer;
     public List<LineRenderer> derivativeLines;
+    public List<LineRenderer> curtainLines;
 
 
     //All of this code handles rendering the curve in game, as opposed to just in scene
@@ -37,17 +45,21 @@ public class BezierSpline : MonoBehaviour
         {
             curveRenderer = GetComponent<LineRenderer>();
             derivativeLines = new List<LineRenderer>();
+            curtainLines = new List<LineRenderer>();
 
         }
         curveRenderer.sortingLayerID = layerOrder;
         curveCount = (int)points.Length / 3;
         DrawCurve2();
+        DrawDerivative();
+        DrawCurtain();
 
     }
     void Update()
     {
 
         //DrawCurve();
+        //DrawDerivative();
     }
     void DrawCurve()
     {
@@ -83,31 +95,60 @@ public class BezierSpline : MonoBehaviour
         {
             curveRenderer.loop = true;
         }
+
+        curveRenderer.material.color = Color.blue;
     }
-    
-    /*
+
+
     void DrawDerivative()
     {
-        for (int j = 0; j < curveCount; j++)
+
+        for (int i = 0; i < DERIVATIVE_SEGMENT_COUNT; i++)
         {
-            for (int i = 1; i <= SEGMENT_COUNT; i++)
-            {
-                LineRenderer lRend = new GameObject().AddComponent<LineRenderer>() as LineRenderer;
-                float t = i / (float)SEGMENT_COUNT;
-                int nodeIndex = j * 3;
-                Vector3 pixel = Bezier.GetFirstDerivativeCubic(points[i], points[i + 1], points[i + 2], points[i + 3], t) -transform.position;
-                lRend.SetVertexCount(((j * SEGMENT_COUNT) + i));
-                LRend.SetPosition((j * SEGMENT_COUNT) + (i - 1), pixel);
-                derivativeLines.Add(lRend);
-            }
+            LineRenderer lRend = new GameObject().AddComponent<LineRenderer>() as LineRenderer;
+
+            Vector3 vertex = GetPoint(i / (float)DERIVATIVE_SEGMENT_COUNT);
+
+            lRend.SetVertexCount(2);
+            lRend.SetPosition(0, vertex);
+            lRend.SetPosition(1, vertex + GetDirection(i / (float)DERIVATIVE_SEGMENT_COUNT)*DerivativeLength);
+
+            lRend.material.color = Color.green;
+
+
+            derivativeLines.Add(lRend);
+            derivativeLines[i].enabled = true;
+
+        }
+
+    }
+
+    void DrawCurtain()
+    {
+        for (int i = 0; i < CURTAIN_SEGMENT_COUNT; i++)
+        {
+            LineRenderer lRend = new GameObject().AddComponent<LineRenderer>() as LineRenderer;
+
+            Vector3 vertex = GetPoint(i / (float)CURTAIN_SEGMENT_COUNT);
+
+            lRend.SetVertexCount(2);
+            lRend.SetPosition(0, vertex);
+
+            Vector3 vertex2 = new Vector3(vertex.x, 0, vertex.z);
+            lRend.SetPosition(1, vertex2);
+
+            lRend.material.color = Color.red;
+
+
+            curtainLines.Add(lRend);
+            curtainLines[i].enabled = true;
 
         }
     }
-    */
 
-    
-    
-    
+
+
+
     //End of the rendering code
 
 
