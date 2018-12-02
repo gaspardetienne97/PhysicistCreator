@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/PhysicistCreator/precache-manifest.5d7a429627508dc33d53987fb6121d62.js"
+  "/PhysicistCreator/precache-manifest.12e2111ceb5056731b1f253118af80c0.js"
 );
 
 workbox.clientsClaim();
