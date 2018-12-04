@@ -1,15 +1,15 @@
 {
-  "main.css": "/static/css/main.c881471c.chunk.css",
-  "main.js": "/static/js/main.6a500bdf.chunk.js",
-  "main.js.map": "/static/js/main.6a500bdf.chunk.js.map",
-  "static/js/1.da9dd177.chunk.js": "/static/js/1.da9dd177.chunk.js",
-  "static/js/1.da9dd177.chunk.js.map": "/static/js/1.da9dd177.chunk.js.map",
-  "runtime~main.js": "/static/js/runtime~main.229c360f.js",
-  "runtime~main.js.map": "/static/js/runtime~main.229c360f.js.map",
-  "static/css/main.c881471c.chunk.css.map": "/static/css/main.c881471c.chunk.css.map",
-  "static/media/Placeholder.png": "/static/media/Placeholder.efecd9d4.png",
-  "static/media/logo.svg": "/static/media/logo.ee7cd8ed.svg",
-  "index.html": "/index.html",
-  "precache-manifest.bfac650771ca7cdcc217b9e0cd7fd09e.js": "/precache-manifest.bfac650771ca7cdcc217b9e0cd7fd09e.js",
-  "service-worker.js": "/service-worker.js"
+  "main.css": "/PhysicistCreator/static/css/main.99acfacd.chunk.css",
+  "main.js": "/PhysicistCreator/static/js/main.b2ed79ab.chunk.js",
+  "main.js.map": "/PhysicistCreator/static/js/main.b2ed79ab.chunk.js.map",
+  "static/js/1.143debc0.chunk.js": "/PhysicistCreator/static/js/1.143debc0.chunk.js",
+  "static/js/1.143debc0.chunk.js.map": "/PhysicistCreator/static/js/1.143debc0.chunk.js.map",
+  "runtime~main.js": "/PhysicistCreator/static/js/runtime~main.9312d5e7.js",
+  "runtime~main.js.map": "/PhysicistCreator/static/js/runtime~main.9312d5e7.js.map",
+  "static/css/main.99acfacd.chunk.css.map": "/PhysicistCreator/static/css/main.99acfacd.chunk.css.map",
+  "static/media/Placeholder.png": "/PhysicistCreator/static/media/Placeholder.efecd9d4.png",
+  "static/media/logo.svg": "/PhysicistCreator/static/media/logo.ee7cd8ed.svg",
+  "index.html": "/PhysicistCreator/index.html",
+  "precache-manifest.fac21698ff09de1786a1640c82630711.js": "/PhysicistCreator/precache-manifest.fac21698ff09de1786a1640c82630711.js",
+  "service-worker.js": "/PhysicistCreator/service-worker.js"
 }
