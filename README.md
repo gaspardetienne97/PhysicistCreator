@@ -4,7 +4,7 @@ PhysicistCreator
 A repository to house our Spark project
 -------------------------------------
 
-See the demo [here!](www.sigmatau.me)
+See our demo site [here!](https://www.sigmatau.me)
 
 This repository is structured such that the directory unity holds most of our test scenes and the web directory holds our web-app.
 
