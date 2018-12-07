@@ -5,64 +5,81 @@ import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
 import {Link} from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton/IconButton";
-import ViewModule from "@material-ui/core/SvgIcon/SvgIcon";
-
+import Unity, {UnityContent} from "react-unity-webgl";
+import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft'
+import Grid from '@material-ui/core/Grid';
 
 const styles = theme => ({
+    root:{
+        backgroundColor: theme.palette.secondary.main,
+        flex: 1,
+        width: '100%'
+    },
+    name: {
+        width: '100%',
+        backgroundColor: theme.palette.primary.light,
+        padding: theme.spacing.unit,
+        textAlign: 'left',
+
+    },
+    nameIcon: {
+        fontSize: 52,
+        backgroundColor: theme.palette.primary.main,
+    },
     equation: {
-        border: 'black solid 1 vmin',
+        padding: theme.spacing.unit,
+        textAlign: 'center',
+    },
+    restofContent: {
         backgroundColor: theme.palette.secondary.light,
-        minHeight: '7vh',
-        maxHeight: '10vh',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontSize: 'calc(10px +2vh)',
-        color: 'white',
-        marginBottom: '2vh',
-        marginTop: '2vh'
     },
     simulation: {
-        border: 'black solid vh',
-        minHeight: '75vh',
-        maxHeight: '80vh',
+        border: 'black solid 1%',
         backgroundColor: theme.palette.primary.light,
-        marginTop: '2vh',
 
-    }
+    },
+
 });
 
 class Simulation extends Component {
+    constructor(props) {
+        super(props);
+
+        this.unityContent = new UnityContent(
+            "UnityModules/Build/UnityModules.json",
+            "UnityModules/Build/UnityLoader.js"
+        );
+    }
 
     render() {
         const {classes} = this.props;
         return (
-            <div>
-                <div className={classes.equation}>
-                    <div>
+            <div className={classes.root}>
+                <Grid container className={classes.name}>
+                    <Grid item xs={2} md={1} lg={1} className={classes.nameIcon}>
                         <Link to={'/gallery'}>
                             <IconButton color="inherit">
-                                <ViewModule/>
+                                <KeyboardArrowLeft/>
                             </IconButton>
                         </Link>
+                    </Grid>
+                    <Grid item xs={10} md={11} lg={11}>
                         <Typography variant="h4">
-                            Module Name
+                            {this.props.name} Module
                         </Typography>
-                    </div>
-                    <Typography variant="h1">
-                        Equation goes here
-                    </Typography>
-                </div>
-                <Divider/>
-                <div className={classes.simulation}>
-                    <Typography variant="h1">
-                        Simulation goes here
-                    </Typography>
-
-                </div>
+                    </Grid>
+                    <Grid item xs={12} className={classes.restofContent}>
+                        <Typography variant="h1">
+                            Equation goes here
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={12} className={classes.simulation}>
+                        <Unity unityContent={this.unityContent}/>
+                    </Grid>
+                </Grid>
             </div>
-        );
+        )
+            ;
     }
 }
 

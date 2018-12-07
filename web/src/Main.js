@@ -14,21 +14,22 @@ import Home from './Home'
 import Simulation from './Simulation'
 import Gallery from './Modules';
 import logo from './logo.svg';
+import Grid from '@material-ui/core/Grid';
 
 
 const styles = theme => ({
     root: {
         width: '100%',
-        height: '100%'
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column'
     },
     grow: {
-        flexGrow: 1,
-    },
-    menuButton: {
-        marginLeft: -12,
-        marginRight: 20,
+        flexGrow: 1
     },
     title: {
+        marginLeft: -12,
+        marginRight: 20,
         display: 'none',
         [theme.breakpoints.up('sm')]: {
             display: 'block',
@@ -37,6 +38,10 @@ const styles = theme => ({
         '&:hover': {
             backgroundColor: fade(theme.palette.common.white, 0.25),
         },
+
+    },
+    button: {
+        minWidth: '4vw',
     },
     search: {
         position: 'relative',
@@ -45,9 +50,8 @@ const styles = theme => ({
         '&:hover': {
             backgroundColor: fade(theme.palette.common.white, 0.25),
         },
-        marginRight: theme.spacing.unit * 2,
         [theme.breakpoints.up('sm')]: {
-            marginLeft: theme.spacing.unit * 3,
+            marginLeft: theme.spacing.unit,
             width: 'auto',
         },
     },
@@ -71,8 +75,11 @@ const styles = theme => ({
         paddingLeft: theme.spacing.unit * 10,
         transition: theme.transitions.create('width'),
         width: '100%',
-        [theme.breakpoints.up('md')]: {
-            width: 200,
+        [theme.breakpoints.up('sm')]: {
+            width: 120,
+            '&:focus': {
+                width: 200,
+            },
         },
     }
 
@@ -82,25 +89,33 @@ const styles = theme => ({
 
 class Main extends React.Component {
     state = {
-        anchorEl: null,
-        mobileMoreAnchorEl: null,
+        search: ""
     };
 
     render() {
         const {classes} = this.props;
         return (
             <div className={classes.root}>
-                <AppBar position="sticky">
+                <AppBar position="static">
                     <Toolbar>
-                        <Link to='/'>
-                            <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
-                                <img src={logo} alt={'logo'}/>
-                            </IconButton>
+                        <Grid container>
+                            <Grid item xs={4}>
+                                <Link to='/' className={classes.title}>
+                                    <IconButton color="inherit" aria-label="Open drawer" className={classes.button}>
+                                        <img src={logo} alt={'logo'}/>
+                                    </IconButton>
+                                </Link>
 
-                            <Typography className={classes.title} variant="h6" color="inherit" noWrap>
-                                SigmaTau
-                            </Typography>
-                        </Link>
+                                <Grid item xs={8}>
+                                    <Link to='/'>
+                                        <Typography variant="h6" color="inherit" noWrap>
+                                            SigmaTau
+                                        </Typography>
+                                    </Link>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                        <div className={classes.grow}/>
                         <div className={classes.search}>
                             <div className={classes.searchIcon}>
                                 <SearchIcon/>
@@ -113,10 +128,10 @@ class Main extends React.Component {
                                 }}
                             />
                         </div>
-                        <div className={classes.grow}/>
                     </Toolbar>
                 </AppBar>
                 <Switch>
+                    {/*<Route exact path='' component={Home}/>*/}
                     <Route exact path='/' component={Home}/>
                     <Route path='/home' component={Home}/>
                     <Route path='/gallery' component={Gallery}/>

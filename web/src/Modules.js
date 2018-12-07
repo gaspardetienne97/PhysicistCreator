@@ -10,99 +10,96 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import {Link} from 'react-router-dom';
 import Placeholder from './images/Placeholder.png';
+import Grid from "@material-ui/core/Grid";
 
-const styles = theme=> ({
+const styles = theme => ({
     root: {
-        flexGrow: 1,
-        display: 'flex',
+        flex: 1,
+        width: '100%',
         backgroundColor: theme.palette.secondary.main,
-        height: '100%',
-        width: '100%'
     },
-    grow: {
-        flexGrow: 1,
-    },
-    menuButton: {
-        marginLeft: -12,
-        marginRight: 20,
+    container: {
+        justifyContent: 'space-around',
     },
     card: {
-        maxWidth: 345,
+        marginTop: '3%',
+        width: 345,
+
     },
     media: {
         height: 140,
     },
-    card1: {
-        padding: '2%'
-    },
-    card2: {
-        padding: '2%'
-    }
+
+
 });
 
 
-class  Modules extends React.Component {
-    render(){
+class Modules extends React.Component {
+    render() {
         const {classes} = this.props;
 
         return (
 
-        <div className={classes.root}>
-            <div className={classes.card1}>
-            <Card className={classes.card}>
-                <CardActionArea>
-                    <CardMedia
-                        className={classes.media}
-                        image={Placeholder}
-                        title="Contemplative Reptile"
-                    />
-                    <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
-                            Math Module
-                        </Typography>
-                        <Typography component="p">
-                          Our math module will go here it will be comprised of the visualization of a line integral in 3D space
-                        </Typography>
-                    </CardContent>
-                </CardActionArea>
-                <CardActions>
-                    <Link to='/simulation'>
-                    <Button size="small" color="primary" >
-                        Learn More
-                    </Button>
-                    </Link>
-                </CardActions>
-            </Card>
+            <div className={classes.root}>
+                <Grid container className={classes.container}>
+                    <Grid item xs={12} sm={6} md={3} lg={3}>
+                        <Card className={classes.card}>
+                            <CardActionArea>
+                                <CardMedia
+                                    className={classes.media}
+                                    image={Placeholder}
+                                    title="Contemplative Reptile"
+                                />
+                                <CardContent className={classes.info}>
+                                    <Typography gutterBottom variant="h5" component="h2">
+                                        Math Module
+                                    </Typography>
+                                    <Typography component="p">
+                                        Our math module will go here it will be comprised of the visualization of a line
+                                        integral in 3D space
+                                    </Typography>
+                                </CardContent>
+                            </CardActionArea>
+                            <CardActions>
+                                <Link to='/simulation'>
+                                    <Button size="small" color="primary">
+                                        Start!
+                                    </Button>
+                                </Link>
+                            </CardActions>
+                        </Card>
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={3} lg={3}>
+                        <Card className={classes.card}>
+                            <CardActionArea>
+                                <CardMedia
+                                    className={classes.media}
+                                    image={Placeholder}
+                                    title="Contemplative Reptile"
+                                />
+                                <CardContent className={classes.info}>
+                                    <Typography gutterBottom variant="h5" component="h2">
+                                        Physics Module
+                                    </Typography>
+                                    <Typography component="p">
+                                        Our physics module will build upon our math module and explain flux using line
+                                        integrals.
+                                    </Typography>
+                                </CardContent>
+                            </CardActionArea>
+                            <CardActions>
+                                <Link to='/simulation'>
+                                    <Button size="small" color="primary">
+                                        Start!
+                                    </Button>
+                                </Link>
+                            </CardActions>
+                        </Card>
+                    </Grid>
+                </Grid>
             </div>
-            <div className={classes.card2}>
-            <Card className={classes.card}>
-                <CardActionArea>
-                    <CardMedia
-                        className={classes.media}
-                        image={Placeholder}
-                        title="Contemplative Reptile"
-                    />
-                    <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
-                            Physics Module
-                        </Typography>
-                        <Typography component="p">
-                          Our physics module will build upon our math module and explain flux using line integrals.
-                        </Typography>
-                    </CardContent>
-                </CardActionArea>
-                <CardActions>
-                    <Link to='/simulation'>
-                    <Button size="small" color="primary">
-                    Learn More
-                    </Button>
-                    </Link>
-                </CardActions>
-            </Card>
-            </div>
-        </div>
-    );
-}
+        );
+    }
 }
 
 Modules.propTypes = {
