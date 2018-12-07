@@ -19,7 +19,7 @@ public class VectorField : MonoBehaviour {
     public Vector3 yend;
     public Vector3 zend;
 
-    private GameObject[,,] cartesian = new GameObject[(int)xrange / density, (int)yrange / density, (int)zrange / density];
+    //private GameObject[,,] cartesian = new GameObject[(int)xrange / density, (int)yrange / density, (int)zrange / density];
 
 
     public LineRenderer curveRenderer;
@@ -63,9 +63,48 @@ public class VectorField : MonoBehaviour {
         lRend3.enabled = true;
         cartesianLines.Add(lRend3);
 
+        //cartesian = new GameObject[(int)xrange / density, (int)yrange / density, (int)zrange / density];
+        //Material material = Resources.Load("ArrowAsset/materials", typeof(Material)) as Material;
+        Mesh myMesh = (Mesh)Resources.Load("ArrowAsset/model", typeof(Mesh));
 
+        //Material mat = Resources.Load("ArrowAsset/materials") as Material;
+
+        GameObject prefab = new GameObject("Arrows");
+        prefab.transform.localScale += new Vector3(50, 50, 50);
+        prefab.AddComponent<MeshFilter>();
+        prefab.AddComponent<MeshRenderer>();
+        prefab.GetComponent<MeshFilter>().sharedMesh = myMesh;
+        prefab.GetComponent<MeshRenderer>().material.color = Color.white;
+
+
+
+
+        for (int i = 0; i < (int)xrange / density; i = i + 1)
+        {
+            for (int j = 0; j < (int)yrange / density; j = j + 1)
+            {
+                for (int k = 0; k < (int)zrange / density; k = k + 1)
+                {
+                    /*
+                    cartesian[i, j, k] = new GameObject();
+                    cartesian[i, j, k].transform.position = new Vector3(i * density, j * density, k * density);
+                    cartesian[i, j, k].AddComponent<MeshFilter>();
+                    cartesian[i, j, k].AddComponent<MeshRenderer>();
+                    cartesian[i, j, k].GetComponent<MeshFilter>().sharedMesh = myMesh;
+                    cartesian[i, j, k].GetComponent<MeshRenderer>().material.color = Color.white;
+
+                    cartesian[i, j, k].transform.localScale += new Vector3(50, 50, 50);
+                    */
+
+                    Vector3 pos = origin + new Vector3(i * density, j * density, k * density);
+                    Instantiate(prefab, pos, Quaternion.identity);
+
+                }
+            }
+        }
 
     }
+
 
 	
 	// Update is called once per frame
@@ -83,45 +122,7 @@ public class VectorField : MonoBehaviour {
 
 
 
-        
-        for (int i = 0; i < (int)xrange / density; i = i + 1)
-        {
-            for (int j = 0; j < (int)yrange / density; j = j + 1)
-            {
-                for (int k = 0; k < (int)zrange / density; k = k + 1)
-                {
-                    //Destroy(cartesian[i, j, k]);
 
-                }
-            }
-        }
-
-
-
-        cartesian = new GameObject[(int) xrange / density, (int) yrange / density, (int) zrange / density];
-        //Material material = Resources.Load("ArrowAsset/materials", typeof(Material)) as Material;
-        Mesh myMesh = (Mesh)Resources.Load("ArrowAsset/model", typeof(Mesh));
-        //Material mat = Resources.Load("ArrowAsset/materials") as Material;
-
-        for (int i = 0; i < (int)xrange /density; i = i +1)
-        {
-            for (int j = 0; j < (int)yrange /density; j = j +1)
-            {
-                for (int k = 0; k < (int)zrange/density; k = k +1)
-                {
-
-                    cartesian[i, j, k] = new GameObject();
-                    cartesian[i,j,k].transform.position = new Vector3(i * density, j * density, k * density);
-                    cartesian[i, j, k].AddComponent<MeshFilter>();
-                    cartesian[i, j, k].AddComponent<MeshRenderer>();
-                    cartesian[i, j, k].GetComponent<MeshFilter>().sharedMesh = myMesh;
-                    cartesian[i, j, k].GetComponent<MeshRenderer>().material.color = Color.white;
-
-                    cartesian[i,j,k].transform.localScale += new Vector3(50, 50, 50);
-
-                }
-            }
-        }
 
     }
 
