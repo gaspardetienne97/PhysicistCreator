@@ -1,36 +1,42 @@
 import React, {Component} from 'react';
-import Drawer from './drawer'
-import logo from './logo.svg';
+import Main from './Main';
+//todo: make svg logo and call it from here
+// import logo from './logo.svg';
 import './App.css';
-import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
-import purple from '@material-ui/core/colors/purple';
-import green from '@material-ui/core/colors/green';
+import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles';
+
 
 const theme = createMuiTheme({
-    palette: {
-        primary: {
-            light: purple[300],
-            main: purple[500],
-            dark: purple[700],
+        palette: {
+            primary: {
+                light: '#9a67ea',
+                main: '#673ab7',
+                dark: '#320b86',
+                contrastText: '#ffffff'
+            },
+            secondary: {
+                light: '#ffeeff',
+                main: '#f8bbd0',
+                dark: '#c48b9f',
+                contrastText: '#000000'
+            },
         },
-        secondary: {
-            light: green[300],
-            main: green[500],
-            dark: green[700],
+        typography: {
+            useNextVariants: true,
         },
-    },
-    typography: {
-        useNextVariants: true,
-    },
-});
+
+    }
+);
+
 
 class App extends Component {
+
+
     render() {
         return (
+
             <MuiThemeProvider theme={theme}>
-                <div className="App">
-                    <Drawer/>
-                </div>
+                <Main/>
             </MuiThemeProvider>
         );
     }
