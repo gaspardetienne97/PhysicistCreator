@@ -21,6 +21,7 @@ public class FieldWalker : MonoBehaviour
     {
         if (goingForward)
         {
+            //transform.Rotate(0,0,30);
             progress += Time.deltaTime / duration;
             if (progress > 1f)
             {
@@ -48,9 +49,10 @@ public class FieldWalker : MonoBehaviour
                 goingForward = true;
             }
         }
+
         Vector3 position = spline.GetPoint(progress);
         transform.localPosition = position;
-        transform.position += 15*Vector3.up;
+
 
         if (lookForward)
         {
