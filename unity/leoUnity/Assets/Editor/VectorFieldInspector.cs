@@ -11,7 +11,7 @@ public class VectorFieldInspector : Editor
     private Quaternion handleRotation;
 
 
-    
+
 
     private void OnSceneGUI()
     {
@@ -21,7 +21,7 @@ public class VectorFieldInspector : Editor
         handleRotation = Tools.pivotRotation == PivotRotation.Local ?
             handleTransform.rotation : Quaternion.identity;
 
-        
+
         Vector3 p0 = ShowPoint(0);
         Vector3 px = ShowPoint(1);
         Vector3 py = ShowPoint(2);
@@ -33,11 +33,13 @@ public class VectorFieldInspector : Editor
         Handles.DrawLine(p0, px);
         Handles.DrawLine(p0, py);
         Handles.DrawLine(p0, pz);
-        
 
+        Handles.color = Color.gray;
 
+        //graph = new Vector3[(int)vfield.xrange / vfield.density, (int)vfield.yrange / vfield.density, (int)vfield.zrange / vfield.density];
 
     }
+
 
 
     //Modified to provide a nicer UI
@@ -48,7 +50,7 @@ public class VectorFieldInspector : Editor
     private Vector3 ShowPoint(int index)
     {
 
-        Vector3 point;
+        Vector3 point = vfield.origin;
         if (index == 0) {
             point = handleTransform.TransformPoint(vfield.origin);
         }
@@ -58,9 +60,9 @@ public class VectorFieldInspector : Editor
         else if (index == 2) {
             point = handleTransform.TransformPoint(vfield.yend);
         }
-        else {
+        else if (index == 3){
             point = handleTransform.TransformPoint(vfield.zend);
-        } 
+        }
 
 
 
@@ -81,7 +83,7 @@ public class VectorFieldInspector : Editor
             Repaint();
         }
 
-        if (selectedIndex == index && selectedIndex != 0)
+        if (selectedIndex == index && selectedIndex < 4)
         {
             EditorGUI.BeginChangeCheck();
             point = Handles.DoPositionHandle(point, handleRotation);
@@ -92,6 +94,21 @@ public class VectorFieldInspector : Editor
             }
         }
         return point;
+    }
+
+    private void DrawSelectedPointInspector()
+    {
+        GUILayout.Label("Selected Point");
+        EditorGUI.BeginChangeCheck();
+        Vector3 point = EditorGUILayout.Vector3Field("Position", vfield.GetControlPoint(selectedIndex));
+        if (EditorGUI.EndChangeCheck())
+        {
+            Undo.RecordObject(vfield, "Move Point");
+            EditorUtility.SetDirty(vfield);
+            vfield.SetControlPoint(selectedIndex, point);
+        }
+
+
     }
 
 
