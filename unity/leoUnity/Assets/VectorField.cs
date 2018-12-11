@@ -9,10 +9,12 @@ using UnityEngine;
 public class VectorField : MonoBehaviour {
 
 
-    public static int density = 100;
-    public static int xrange = 1000;
-    public static int yrange = 1000;
-    public static int zrange = 1000;
+    public int density = 10;
+    public int scale = 10;
+
+    public int xrange = 100;
+    public int yrange = 100;
+    public int zrange = 100;
 
     public Vector3 origin;
     public Vector3 xend;
@@ -65,12 +67,12 @@ public class VectorField : MonoBehaviour {
 
         //cartesian = new GameObject[(int)xrange / density, (int)yrange / density, (int)zrange / density];
         //Material material = Resources.Load("ArrowAsset/materials", typeof(Material)) as Material;
-        Mesh myMesh = (Mesh)Resources.Load("ArrowAsset/model", typeof(Mesh));
+        Mesh myMesh = (Mesh)Resources.Load("ArrowAsset/CorrectedPivotArrow", typeof(Mesh));
 
         //Material mat = Resources.Load("ArrowAsset/materials") as Material;
 
         GameObject prefab = new GameObject("Arrows");
-        prefab.transform.localScale += new Vector3(50, 50, 50);
+        prefab.transform.localScale += new Vector3(scale, scale, scale);
         prefab.AddComponent<MeshFilter>();
         prefab.AddComponent<MeshRenderer>();
         prefab.GetComponent<MeshFilter>().sharedMesh = myMesh;
@@ -105,10 +107,46 @@ public class VectorField : MonoBehaviour {
 
     }
 
+    public Vector3 GetControlPoint(int index)
+    {
+        if (index == 0) {
+            return origin;
+        } else if (index == 1) {
+            return xend;
+        } else if (index == 2)
+        {
+            return yend;
+        } else
+        {
+            return zend;
+        }
+        
+    }
 
-	
-	// Update is called once per frame
-	void Update () {
+    public void SetControlPoint(int index, Vector3 point)
+    {
+        if (index == 0)
+        {
+            origin = point;
+        }
+        else if (index == 1)
+        {
+            xend = point;
+        }
+        else if (index == 2)
+        {
+            yend = point;
+        }
+        else
+        {
+            zend = point;
+        }
+    }
+
+
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 
