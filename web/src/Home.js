@@ -10,6 +10,7 @@ import {
     Link
 } from 'react-router-dom'
 import Typography from '@material-ui/core/Typography'
+import Grid from "@material-ui/core//Grid";
 
 
 const styles = theme => ({
@@ -55,10 +56,15 @@ class Home extends Component {
             classes
         } = this.props;
         return (<div className={classes.root}>
-                <div className={classes.infoBox}>
+
+                <Grid container>
+                <Grid container className={classes.infoBox}>
+                    <Grid item>
                     <div className={classes.logo}>
 
                     </div>
+                    </Grid>
+                    <Grid item>
                     <div className={classes.description}>
                         <Typography variant="body1">
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit.Assumenda distinctio doloremque
@@ -67,14 +73,21 @@ class Home extends Component {
                             incidunt inventore iste molestiae voluptatum ?
                         </Typography>
                     </div>
-                    <div className={classes.button}>
+                    </Grid>
+
+                   {/* <div className={classes.button}>
                         <Link to='/gallery'>
                             <Button variant="contained" color="primary">
                                 Get Started!
                             </Button>
                         </Link>
-                    </div>
-                </div>
+                    </div>*/}
+
+                </Grid>
+                    <Grid container>
+                        Grid
+                    </Grid>
+                </Grid>
             </div>
         );
     }
