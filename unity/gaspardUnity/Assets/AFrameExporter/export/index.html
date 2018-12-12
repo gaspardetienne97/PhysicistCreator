@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hello world!</title>
+    <meta name="description" content="Hello world!">
+    <script src="https://aframe.io/releases/latest/aframe.js"></script>
+  </head>
+  <body>
+    <a-scene stats="true">
+<a-sky color="#C2C2C2" src="images/PipeOrganCactus_BaseColor.png" ></a-sky>
+      <a-entity loader="src: url(models/HandR.obj); format: obj" rotation="270 0 0" position="-0.25 66.745 -259.541" material="shader: standard; repeat: 1; color: #CBCBCB; metalness: 0; roughness: 1; transparent: false; opacity: 1; side: double; "></a-entity>
+      <a-entity loader="src: url(models/Hand.obj); format: obj" rotation="270 0 0" position="0.25 66.745 -259.541" material="shader: standard; repeat: 1; color: #CBCBCB; metalness: 0; roughness: 1; transparent: false; opacity: 1; side: double; "></a-entity>
+      <a-light type=directional; intensity=1 color=#FFF4D6 position="-0.3213938 0.7660444 -0.5566705" ></a-light>
+      <a-camera cursor-color=#FFFF58 wasd-controls-enabled=true></a-camera>
+      <a-camera cursor-color=#FFFF58 wasd-controls-enabled=true></a-camera>
+    </a-scene stats="true">
+  </body>
+</html>

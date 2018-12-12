@@ -44,9 +44,9 @@ const styles = theme => ({
         textAlign: 'center',
         borderRadius: '100%',
         border: '' + theme.palette.primary.dark + ' solid 1%',
-        backgroundColor: theme.palette.secondary.main,
-        height: '100%',
-        width: '100%',
+        backgroundColor: 'gray',
+        height: '320px',
+        width: '320px',
         margin: '5% auto'
     },
     description: {
@@ -72,7 +72,7 @@ const styles = theme => ({
     root: {
         height: '100%',
         width: '100%',
-        backgroundColor: "grey",
+        backgroundColor: "white",
         padding: '50px auto'
     },
     paper: {

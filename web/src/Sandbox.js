@@ -12,6 +12,8 @@ import InputBase from "@material-ui/core/InputBase";
 import {fade} from "@material-ui/core/styles/colorManipulator";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
+import {Entity, Scene} from 'aframe-react'
+//import 'aframe-particle-system-component';
 
 const styles = theme => ({
     root: {
@@ -105,7 +107,10 @@ const styles = theme => ({
          margin: 'auto',
          height: '80%'
      },*/
-
+nameBar: {
+    backgroundColor: theme.palette.primary.main,
+    padding: theme.spacing.unit
+}
 });
 
 class Sandbox extends Component {
@@ -163,9 +168,6 @@ class Sandbox extends Component {
                                     <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
                                         <KeyboardArrowLeft/>
                                     </IconButton>
-                                    <Typography className={classes.title} variant="h6" color="inherit" noWrap>
-                                        SigmaTau
-                                    </Typography>
                                 </Link>
                                 <div className={classes.grow}/>
                                 <div className={classes.search}>
@@ -183,9 +185,9 @@ class Sandbox extends Component {
                             </Toolbar>
                         </AppBar>
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid item xs={12} className={classes.nameBar}>
                         <Typography variant="h3">
-                            {this.props.name} Module
+                            {this.props.name}Math Module
                         </Typography>
                     </Grid>
                     <Grid item>
@@ -194,7 +196,7 @@ class Sandbox extends Component {
                         </div>
                     </Grid>
                     <Grid item xs={12} className={classes.simulation}>
-                        <button onClick={this.onClickStart.bind(this)}>{"Start"}</button>
+                      {/*  <button onClick={this.onClickStart.bind(this)}>{"Start"}</button>
                         <button onClick={this.onClickStop.bind(this)}>{"Stop"}</button>
                         <button onClick={this.onClickUpdateSpeed.bind(this, 10)}>
                             {"Faster"}
@@ -203,6 +205,15 @@ class Sandbox extends Component {
                             {"Slower"}
                         </button>
                         <Unity unityContent={this.unityContent} height="90%" width="100%"/>
+                        */}
+                        <Scene>
+                            <Entity geometry={{primitive: 'box'}} material={{color: 'red'}}
+                                    position={{x: 0, y: 0, z: -5}}/>
+                            <Entity particle-system={{preset: 'snow'}}/>
+                            <Entity light={{type: 'point'}}/>
+
+                            <Entity text={{value: 'Hello, WebVR!'}}/>
+                        </Scene>
                     </Grid>
                 </Grid>
             </div>
