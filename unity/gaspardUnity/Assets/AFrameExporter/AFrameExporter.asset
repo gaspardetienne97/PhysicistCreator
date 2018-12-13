@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d68a5d6dafd9ced4b8c899a601a43839, type: 3}
+  m_Name: AFrameExporter
+  m_EditorClassIdentifier: 
+  title: Hello world!
+  libraryAddress: https://aframe.io/releases/latest/aframe.js
+  enable_performance_statistics: 1
+  enable_sky: 1
+  sky_color_from_MainCamera_Background: 1
+  sky_color: {r: 0.7607844, g: 0.7607844, b: 0.7607844, a: 1}
+  sky_texture: {fileID: 2800000, guid: 63be4fa0e42a445c9a40e52e86f08d4a, type: 3}
+  wasd_controls_enabled: 1
+  look_controls_enabled: 1
+  cursor_visible: 1
+  cursor_opacity: 1
+  cursor_scale: 1
+  cursor_color: {r: 1, g: 1, b: 0.347, a: 1}
+  cursor_offset: 1
+  cursor_maxdistance: 1000
