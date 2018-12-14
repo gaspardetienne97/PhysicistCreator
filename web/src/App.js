@@ -1,6 +1,4 @@
 import React, {Component} from 'react'
-import Main from './Main';
-//todo: make svg logo and call it from here
 import logo from './logo.svg'
 import './App.css'
 import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles'
@@ -8,6 +6,10 @@ import Homepage from './Homepage'
 import {Route, Switch} from "react-router-dom"
 import NoMatch from "./NoMatch"
 import Sandbox from './Sandbox'
+import content from './Content'
+import Widget from "./Widget";
+import Placeholder from "./images/Placeholder.png";
+import Grid from "@material-ui/core/Grid";
 
 const theme = createMuiTheme({
         palette: {
@@ -32,6 +34,8 @@ const theme = createMuiTheme({
 );
 
 
+
+
 class App extends Component {
 
 
@@ -39,12 +43,33 @@ class App extends Component {
         return (
 
             <MuiThemeProvider theme={theme}>
-                {/*<Main/>*/}
-                {/*<Homepage/>*/}
                 <Switch>
-                    <Route exact path='/' component={Homepage}/>
-                    <Route path='/home' component={Homepage}/>
-                    <Route exact path='/simulation' component={Sandbox}/>
+                    <Route exact path='/' render={(props) => <Homepage {...props} content={content}/>}/>
+                    <Route path='/home' render={(props) => <Homepage {...props} content={content}/>}/>
+
+
+                    <Route exact path={'/'+content.VectorSinkLoop.name}
+                           render={(props) => <Sandbox {...props} content={content.Math}/>}/>
+                    <Route exact path={'/'+content.FaradaysLaw.name}
+                           render={(props) => <Sandbox {...props} content={content.Math}/>}/>
+                    <Route exact path={'/'+content.AmperesLaw.name}
+                           render={(props) => <Sandbox {...props} content={content.Math}/>}/>
+                    <Route exact path={'/'+content.ConstantVectorIntegralOpenLoop.name}
+                           render={(props) => <Sandbox {...props} content={content.Math}/>}/>
+                    <Route exact path={'/'+content.VectorLoopConstant.name}
+                           render={(props) => <Sandbox {...props} content={content.Math}/>}/>
+                    <Route exact path={'/'+content.VectorLoopSink.name}
+                           render={(props) => <Sandbox {...props} content={content.Math}/>}/>
+                    <Route exact path={'/'+content.VectorLoopDiscontinuous.name}
+                           render={(props) => <Sandbox {...props} content={content.Math}/>}/>
+                    <Route exact path={'/'+content.VectorOpenConstant.name}
+                           render={(props) => <Sandbox {...props} content={content.Math}/>}/>
+                    <Route exact path={'/'+content.ScalarOpen.name}
+                           render={(props) => <Sandbox {...props} content={content.Math}/>}/>
+                    <Route exact path={'/'+content.VectorClosedSink.name}
+                           render={(props) => <Sandbox {...props} content={content.Math}/>}/>
+
+
                     <Route component={NoMatch}/>
                 </Switch>
             </MuiThemeProvider>

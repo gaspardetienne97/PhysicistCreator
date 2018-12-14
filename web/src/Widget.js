@@ -7,7 +7,6 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import {Link} from "react-router-dom";
-import GridList from "@material-ui/core/es/GridList/GridList";
 import Grid from "@material-ui/core/Grid";
 
 const styles = theme => ({
@@ -67,7 +66,7 @@ class MediaControlCard extends React.Component{
                     </Typography>
                 </CardContent>
                 <div className={classes.button}>
-                    <Link to='/simulation'>
+                    <Link to={this.props.name}>
                         <Button  color="secondary">
                             Get Started!
                         </Button>

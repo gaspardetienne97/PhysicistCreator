@@ -1,0 +1,13 @@
+{
+"companyName": "DefaultCompany",
+"productName": "gaspardUnity",
+"dataUrl": "d331e0c76410b20aa095b98e17b8721f.unityweb",
+"wasmCodeUrl": "c94f5ef94c8785c04a8c0d1b9c2761c3.unityweb",
+"wasmFrameworkUrl": "c310730ebe2a50c1fd6f329e971af794.unityweb",
+"TOTAL_MEMORY": 268435456,
+"graphicsAPI": ["WebGL 2.0", "WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20",
+"cacheControl": {"default": "must-revalidate"}
+}

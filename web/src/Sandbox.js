@@ -12,17 +12,16 @@ import InputBase from "@material-ui/core/InputBase";
 import {fade} from "@material-ui/core/styles/colorManipulator";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import {Entity, Scene} from 'aframe-react'
-//import 'aframe-particle-system-component';
+import logo from './logo.svg'
+import red from '@material-ui/core/colors/red';
+import blue from '@material-ui/core/colors/blue';
+import SvgIcon from '@material-ui/core/SvgIcon';
 
 const styles = theme => ({
     root: {
-
         backgroundColor: theme.palette.secondary.main,
-
-        width: '100%',
-        height: '100%'
-//        overflowY: 'hidden'
+        width: '100vw',
+        height: '100vh'
     },
     sandBoxContainer: {
         flexGrow: 1,
@@ -30,7 +29,6 @@ const styles = theme => ({
         alignContent: 'flex-start',
         justifyContent: 'flex-start',
         height: '100%'
-
     },
     nameIcon: {
         fontSize: 52,
@@ -102,58 +100,43 @@ const styles = theme => ({
             },
         }
     },
+    iconHover: {
+        margin: theme.spacing.unit * 2,
+        '&:hover': {
+            color: red[800],
+        },
+    },
     /* unity:{
          width: '80%',
          margin: 'auto',
          height: '80%'
      },*/
-nameBar: {
-    backgroundColor: theme.palette.primary.main,
-    padding: theme.spacing.unit
-}
+    nameBar: {
+        backgroundColor: theme.palette.primary.main,
+        padding: theme.spacing.unit
+    }
 });
+
+function HomeIcon(props) {
+    return (
+        <SvgIcon {...props}>
+            <img src={logo} alt={'logo'}/>
+        </SvgIcon>
+    );
+}
 
 class Sandbox extends Component {
     constructor(props) {
         super(props);
         this.speed = 30;
         this.unityContent = new UnityContent(
-            "Build/Build/Build.json",
-            "Build/Build/UnityLoader.js", {
+            props.content.JSONBuild,
+            props.content.UnityLoader, {
                 adjustOnWindowResize: true
             }
         );
+    };
 
-
-        this.unityContent.on("Say", message => {
-            console.log("Wow Unity said: " + message);
-        });
-
-        this.unityContent.on("SendRotation", rotation => {
-            this.setState({rotation: Math.round(rotation)});
-        });
-
-        this.unityContent.on("progress", progression => {
-            console.log("Unity progress", progression);
-        });
-
-        this.unityContent.on("loaded", () => {
-            console.log("Yay! Unity is loaded!");
-        });
-    }
-
-    onClickStart() {
-        this.unityContent.send("mesh-crate", "StartRotation");
-    }
-
-    onClickStop() {
-        this.unityContent.send("mesh-crate", "StopRotation");
-    }
-
-    onClickUpdateSpeed(speed) {
-        this.speed += speed;
-        this.unityContent.send("mesh-crate", "SetRotationSpeed", this.speed);
-    }
 
     render() {
         const {classes} = this.props;
@@ -165,9 +148,10 @@ class Sandbox extends Component {
                         <AppBar position="static">
                             <Toolbar>
                                 <Link to={'/home'}>
-                                    <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
-                                        <KeyboardArrowLeft/>
+                                    <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer"><KeyboardArrowLeft/>
                                     </IconButton>
+                                    <IconButton>
+                                        <HomeIcon className={classes.iconHover} color="error" style={{fontSize: 30}} /></IconButton>
                                 </Link>
                                 <div className={classes.grow}/>
                                 <div className={classes.search}>
@@ -187,7 +171,7 @@ class Sandbox extends Component {
                     </Grid>
                     <Grid item xs={12} className={classes.nameBar}>
                         <Typography variant="h3">
-                            {this.props.name}Math Module
+                            {this.props.content.name} Module
                         </Typography>
                     </Grid>
                     <Grid item>
@@ -196,24 +180,7 @@ class Sandbox extends Component {
                         </div>
                     </Grid>
                     <Grid item xs={12} className={classes.simulation}>
-                      {/*  <button onClick={this.onClickStart.bind(this)}>{"Start"}</button>
-                        <button onClick={this.onClickStop.bind(this)}>{"Stop"}</button>
-                        <button onClick={this.onClickUpdateSpeed.bind(this, 10)}>
-                            {"Faster"}
-                        </button>
-                        <button onClick={this.onClickUpdateSpeed.bind(this, -10)}>
-                            {"Slower"}
-                        </button>
                         <Unity unityContent={this.unityContent} height="90%" width="100%"/>
-                        */}
-                        <Scene>
-                            <Entity geometry={{primitive: 'box'}} material={{color: 'red'}}
-                                    position={{x: 0, y: 0, z: -5}}/>
-                            <Entity particle-system={{preset: 'snow'}}/>
-                            <Entity light={{type: 'point'}}/>
-
-                            <Entity text={{value: 'Hello, WebVR!'}}/>
-                        </Scene>
                     </Grid>
                 </Grid>
             </div>
