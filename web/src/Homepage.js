@@ -9,18 +9,6 @@ import Placeholder from './images/Placeholder.png';
 import Paper from '@material-ui/core/Paper';
 
 
-const content = {
-    Math: {
-        name: 'Math',
-        message: '  Our math module will go here it will be comprised of the visualization of a line\n' +
-            '                                        integral in 3D space'
-    },
-    Physics: {
-        name: 'Physics',
-        message: 'Our physics module will build upon our math module and explain flux using line\n' +
-            '                                        integrals.'
-    }
-};
 
 const styles = theme => ({
     homeContainer: {
@@ -81,56 +69,22 @@ const styles = theme => ({
         color: theme.palette.text.secondary,
     },
 });
-
-
-/*
-
-class Homepage extends Component {
-
-    render() {
-        const {classes} = this.props;
-        return (
-
-            <Grid className={classes.container} container>
-                <Grid item xs={12} md={6} lg={4} className={classes.infoBox}>
-                    <Grid container>
-                        <Grid item md={12} className={classes.logo}>
-                            <div >
-                                logo
-                            </div>
-                        </Grid>
-                        <Grid item md={12} className={classes.description}>
-                            <div >
-                                <Typography className={classes.color} variant="body1">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.Assumenda distinctio
-                                    doloremque
-                                    ducimus
-                                    esse hic, illo incidunt neque perspiciatis quod repellat, repudiandae rerum sit
-                                    vitae.Aut
-                                    incidunt inventore iste molestiae voluptatum ?
-                                </Typography>
-                            </div>
-                        </Grid>
-                    </Grid>
-                </Grid>
-                <Grid item xs={12} md={6} lg={8} className={classes.moduleBox} >
-                    <Grid container>
-                        <Grid  item md={12}  className={classes.widgets}>
-                            <Widget name={content.Math.name} message={content.Math.message} img={Placeholder}/>
-                        </Grid>
-                        <Grid  item md={12} className={classes.widgets}>
-                            <Widget name={content.Physics.name} message={content.Physics.message}
-                                    img={Placeholder}/>
-                        </Grid>
-                    </Grid>
-                </Grid>
-
-            </Grid>
-        );
+const content = {
+    Math: {
+        name: 'Math',
+        message: '  Our math module will go here it will be comprised of the visualization of a line\n' +
+            '                                        integral in 3D space',
+       JSONBuild: "Build/Build/Build.json",
+        UnityLoader: "Build/Build/UnityLoader.js",
+    },
+    Physics: {
+        name: 'Physics',
+        message: 'Our physics module will build upon our math module and explain flux using line\n' +
+            '                                        integrals.',
+        JSONBuild: "Build/Build/Build.json",
+        UnityLoader: "Build/Build/UnityLoader.js",
     }
-}
-*/
-
+};
 class Homepage extends Component {
 
     render() {

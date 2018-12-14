@@ -1,3 +1,0 @@
-    </a-scene>
-  </body>
-</html>

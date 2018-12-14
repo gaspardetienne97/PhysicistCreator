@@ -27,6 +27,7 @@ public class BezierSpline : MonoBehaviour
     [SerializeField]
     private bool Vector;
 
+    public bool CameraSpline;
 
 
 
@@ -60,8 +61,10 @@ public class BezierSpline : MonoBehaviour
         curveRenderer.sortingLayerID = layerOrder;
         curveCount = (int)points.Length / 3;
 
-
-        DrawCurve2();
+        if (!CameraSpline)
+        {
+            DrawCurve2();
+        }
 
         if (Scalar) {DrawCurtain();}
         if (Vector) { DrawDerivative(); }
@@ -70,8 +73,7 @@ public class BezierSpline : MonoBehaviour
     void Update()
     {
 
-        //DrawCurve();
-        //DrawDerivative();
+
     }
     void DrawCurve()
     {

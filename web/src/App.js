@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import Main from './Main';
 //todo: make svg logo and call it from here
-// import logo from './logo.svg'
+import logo from './logo.svg'
 import './App.css'
 import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles'
 import Homepage from './Homepage'
