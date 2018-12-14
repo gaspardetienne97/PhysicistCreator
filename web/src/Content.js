@@ -9,7 +9,7 @@ const content = {
     },
     FaradaysLaw: {
         name: 'Faraday\'s Law',
-        message: 'Our physics module will build upon our math module and explain flux using line\n' +
+        message: 'A physics module will build upon our math module and explain flux using line integral to show how a moving electric charge in a magnetic feild produces an electromotive force.\n' +
             '                                        integrals.',
         description: '',
         JSONBuild: "Build/Build/Build.json",
@@ -17,7 +17,7 @@ const content = {
     },
     AmperesLaw: {
         name: 'Ampere\'s Law',
-        message: 'Our physics module will build upon our math module and explain flux using line\n' +
+        message: 'A physics module displaying Amperes law, in which integrating over a closed loop in a magnetic field is proportional to the electric current through the loop. \n' +
             '                                        integrals.',
         description: '',
         JSONBuild: "Build/Build/Build.json",
