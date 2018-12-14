@@ -24,6 +24,7 @@ public class VectorField : MonoBehaviour {
     public LookAt fieldControl;
 
     private int arrowCorrection = 90;
+    
 
     //private GameObject[,,] cartesian = new GameObject[(int)xrange / density, (int)yrange / density, (int)zrange / density];
 
@@ -37,52 +38,50 @@ public class VectorField : MonoBehaviour {
         if (!curveRenderer)
         {
             curveRenderer = GetComponent<LineRenderer>();
-            cartesianLines = new List<LineRenderer>();
+            //cartesianLines = new List<LineRenderer>();
 
 
 
         }
 
-        LineRenderer lRend1 = new GameObject().AddComponent<LineRenderer>() as LineRenderer;
-        lRend1.SetVertexCount(2);
-        lRend1.SetPosition(0, origin+transform.position);
-        lRend1.SetPosition(1, xend + transform.position);
-        lRend1.material.color = Color.white;
-        lRend1.enabled = true;
-        cartesianLines.Add(lRend1);
+        //LineRenderer lRend1 = new GameObject().AddComponent<LineRenderer>() as LineRenderer;
+        //lRend1.SetVertexCount(2);
+        //lRend1.SetPosition(0, origin+transform.position);
+        //lRend1.SetPosition(1, xend + transform.position);
+        //lRend1.material.color = Color.white;
+        //lRend1.enabled = true;
+        //cartesianLines.Add(lRend1);
 
 
-        LineRenderer lRend2 = new GameObject().AddComponent<LineRenderer>() as LineRenderer;
-        lRend2.SetVertexCount(2);
-        lRend2.SetPosition(0, origin + transform.position);
-        lRend2.SetPosition(1, yend + transform.position);
-        lRend2.material.color = Color.white;
-        lRend2.enabled = true;
-        cartesianLines.Add(lRend2);
+        //LineRenderer lRend2 = new GameObject().AddComponent<LineRenderer>() as LineRenderer;
+        //lRend2.SetVertexCount(2);
+        //lRend2.SetPosition(0, origin + transform.position);
+        //lRend2.SetPosition(1, yend + transform.position);
+        //lRend2.material.color = Color.white;
+        //lRend2.enabled = true;
+        //cartesianLines.Add(lRend2);
 
 
-        LineRenderer lRend3 = new GameObject().AddComponent<LineRenderer>() as LineRenderer;
-        lRend3.SetVertexCount(2);
-        lRend3.SetPosition(0, origin + transform.position);
-        lRend3.SetPosition(1, zend + transform.position);
-        lRend3.material.color = Color.white;
-        lRend3.enabled = true;
-        cartesianLines.Add(lRend3);
+        //LineRenderer lRend3 = new GameObject().AddComponent<LineRenderer>() as LineRenderer;
+        //lRend3.SetVertexCount(2);
+        //lRend3.SetPosition(0, origin + transform.position);
+        //lRend3.SetPosition(1, zend + transform.position);
+        //lRend3.material.color = Color.white;
+        //lRend3.enabled = true;
+        //cartesianLines.Add(lRend3);
 
         //cartesian = new GameObject[(int)xrange / density, (int)yrange / density, (int)zrange / density];
         //Material material = Resources.Load("ArrowAsset/materials", typeof(Material)) as Material;
         Mesh myMesh = (Mesh)Resources.Load("ArrowAsset/CorrectedPivotArrow", typeof(Mesh));
-
-        //Material mat = Resources.Load("ArrowAsset/materials") as Material;
 
         GameObject prefab = new GameObject("Arrows");
         prefab.transform.localScale += new Vector3(scale, scale, scale);
         prefab.AddComponent<MeshFilter>();
         prefab.AddComponent<MeshRenderer>();
         prefab.GetComponent<MeshFilter>().sharedMesh = myMesh;
-        prefab.GetComponent<MeshRenderer>().material.color = Color.white;
-
-
+        //prefab.GetComponent<MeshRenderer>().material.color = Color.white;
+        Material myMaterial = (Material)Resources.Load("ArrowAsset/MyWhite", typeof(Material));
+        prefab.GetComponent<MeshRenderer>().material = myMaterial;
 
 
         for (int i = 0; i < (int)xrange / density; i = i + 1)

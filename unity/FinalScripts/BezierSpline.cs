@@ -109,8 +109,10 @@ public class BezierSpline : MonoBehaviour
         {
             curveRenderer.loop = true;
         }
+        Material myMaterial = (Material)Resources.Load("ArrowAsset/MyBlue", typeof(Material));
+        curveRenderer.material= myMaterial;
+        //curveRenderer.material.color = Color.blue;
 
-        curveRenderer.material.color = Color.blue;
     }
 
 
@@ -127,7 +129,10 @@ public class BezierSpline : MonoBehaviour
             lRend.SetPosition(0, vertex);
             lRend.SetPosition(1, vertex + GetDirection(i / (float)DERIVATIVE_SEGMENT_COUNT)*DerivativeLength);
 
-            lRend.material.color = Color.green;
+            //lRend.material.color = Color.green;
+            Material myMaterial3 = (Material)Resources.Load("ArrowAsset/MyRed", typeof(Material));
+            lRend.material = myMaterial3;
+
 
 
             derivativeLines.Add(lRend);
@@ -151,7 +156,10 @@ public class BezierSpline : MonoBehaviour
             Vector3 vertex2 = new Vector3(vertex.x, 0, vertex.z);
             lRend.SetPosition(1, vertex2);
 
-            lRend.material.color = Color.red;
+            //lRend.material.Color = Color.red;
+            Material myMaterial2 = (Material)Resources.Load("ArrowAsset/MyRed", typeof(Material));
+            lRend.material = myMaterial2;
+
 
 
             curtainLines.Add(lRend);
