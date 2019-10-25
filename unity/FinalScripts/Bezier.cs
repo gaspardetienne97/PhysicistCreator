@@ -45,7 +45,7 @@ public static class Bezier
             t * t * t * p3;
     }
 
-    //Cubic first derivativve
+    //Cubic first derivative
     //B'(t) = 2 (1 - t) (P1 - P0) + 2 t (P2 - P1)
     public static Vector3 GetFirstDerivativeCubic(Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3, float t)
     {
